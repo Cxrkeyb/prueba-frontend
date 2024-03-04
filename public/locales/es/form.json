@@ -1,0 +1,76 @@
+{
+  "login": "Inicio de sesión",
+  "loginPrompt": "¡Bienvenido de nuevo! Por favor, inicia sesión para continuar.",
+  "createProduct": "Crear Producto",
+  "createProductPrompt": "Por favor, ingresa los detalles del producto",
+  "createCompany": "Crear Empresa",
+  "createCompanyPrompt": "Por favor, ingresa los detalles de la empresa",
+  "questions": {
+    "code": {
+      "title": "Código de Producto",
+      "placeholder": "Código",
+      "codeError": "Código inválido"
+    },
+    "productName": {
+      "title": "Nombre del Producto",
+      "placeholder": "Nombre del producto",
+      "codeError": "Error en el nombre del producto"
+    },
+    "characteristics": {
+      "title": "Características del Producto",
+      "placeholder": "Características",
+      "codeError": "Error en las características del producto"
+    },
+    "prices": {
+      "titleUSD": "Precio en USD",
+      "titleEUR": "Precio en EUR",
+      "titleGBP": "Precio en GBP",
+      "placeholderUSD": "Precio en USD",
+      "placeholderEUR": "Precio en EUR",
+      "placeholderGBP": "Precio en GBP",
+      "codeError": "Error en el precio del producto"
+    },
+    "company": {
+      "title": "Nombre de la Empresa",
+      "placeholder": "Empresa",
+      "codeError": "Error en el nombre de la empresa"
+    },
+    "nit": {
+      "title": "NIT",
+      "placeholder": "NIT",
+      "codeError": "Error en el NIT"
+    },
+    "name": {
+      "title": "Nombre",
+      "placeholder": "Nombre",
+      "codeError": "Error en el nombre"
+    },
+    "address": {
+      "title": "Dirección",
+      "placeholder": "Dirección",
+      "codeError": "Error en la dirección"
+    },
+    "phoneNumber": {
+      "title": "Número de Teléfono",
+      "placeholder": "Número de teléfono",
+      "codeError": "Error en el número de teléfono"
+    },
+    "email": {
+      "title": "Correo Electrónico",
+      "placeholder": "Correo electrónico",
+      "codeError": "Error en el correo electrónico"
+    },
+    "password": {
+      "title": "Contraseña",
+      "placeholder": "Contraseña",
+      "codeError": "Error en la contraseña"
+    },
+    "delete": "Eliminar",
+    "edit": "Editar"
+  },
+  "required": "Requerido",
+  "viewProducts": "Ver Productos",
+  "viewCompany": "Ver Empresa",
+  "viewProduct": "Ver Producto",
+  "cancel": "Cancelar"
+}

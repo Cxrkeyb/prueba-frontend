@@ -1,0 +1,76 @@
+{
+  "login": "Login",
+  "loginPrompt": "Welcome back! Please log in to continue.",
+  "createProduct": "Create Product",
+  "createProductPrompt": "Please enter product details",
+  "createCompany": "Create Company",
+  "createCompanyPrompt": "Please enter company details",
+  "questions": {
+    "code": {
+      "title": "Product Code",
+      "placeholder": "Code",
+      "codeError": "Invalid code"
+    },
+    "productName": {
+      "title": "Product Name",
+      "placeholder": "Product name",
+      "codeError": "Error in product name"
+    },
+    "characteristics": {
+      "title": "Product Characteristics",
+      "placeholder": "Characteristics",
+      "codeError": "Error in product characteristics"
+    },
+    "prices": {
+      "titleUSD": "Price in USD",
+      "titleEUR": "Price in EUR",
+      "titleGBP": "Price in GBP",
+      "placeholderUSD": "Price in USD",
+      "placeholderEUR": "Price in EUR",
+      "placeholderGBP": "Price in GBP",
+      "codeError": "Error in product price"
+    },
+    "company": {
+      "title": "Company Name",
+      "placeholder": "Company",
+      "codeError": "Error in company name"
+    },
+    "nit": {
+      "title": "NIT",
+      "placeholder": "NIT",
+      "codeError": "Error in NIT"
+    },
+    "name": {
+      "title": "Name",
+      "placeholder": "Name",
+      "codeError": "Error in name"
+    },
+    "address": {
+      "title": "Address",
+      "placeholder": "Address",
+      "codeError": "Error in address"
+    },
+    "phoneNumber": {
+      "title": "Phone Number",
+      "placeholder": "Phone number",
+      "codeError": "Error in phone number"
+    },
+    "email": {
+      "title": "Email",
+      "placeholder": "Email",
+      "codeError": "Error in email"
+    },
+    "password": {
+      "title": "Password",
+      "placeholder": "Password",
+      "codeError": "Error in password"
+    },
+    "delete": "Delete",
+    "edit": "Edit"
+  },
+  "required": "Required",
+  "viewProducts": "View Products",
+  "viewProduct": "View Product",
+  "viewCompany": "View Company",
+  "cancel": "Cancel"
+}

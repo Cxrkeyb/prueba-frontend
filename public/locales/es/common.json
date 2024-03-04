@@ -1,0 +1,24 @@
+{
+  "submit": "Enviar",
+  "intro": {
+    "p1": "Bienvenido/a a la prueba técnica de front-end",
+    "p2": "Puedes iniciar sesión con las credenciales que te hemos proporcionado",
+    "p3": "Si tienes alguna pregunta, no dudes en contactarme"
+  },
+  "login": "Iniciar sesión",
+  "contactUs": "Contáctanos",
+  "email": "Correo electrónico",
+  "phone": "Teléfono",
+  "followUs": "Síguenos",
+  "twitter": "Twitter",
+  "facebook": "Facebook",
+  "instagram": "Instagram",
+  "myWebsiteAllRightsReserved": "Mi sitio web. Todos los derechos reservados.",
+  "viewEnterprises": "Ver Empresas",
+  "viewEnterprisesDescription": "Ver todas las empresas",
+  "pageNotFound": "Página no encontrada",
+  "pageNotFoundDescription": "La página que estás buscando no existe",
+  "backToHome": "Volver a inicio",
+  "error404": "Error 404",
+  "viewEnterprise": "Ver Empresa"
+}

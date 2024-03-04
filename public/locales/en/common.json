@@ -1,0 +1,24 @@
+{
+  "submit": "Submit",
+  "intro": {
+    "p1": "Welcome to the front-end technical test",
+    "p2": "You can log in with the credentials we have provided",
+    "p3": "If you have any questions, feel free to contact me"
+  },
+  "login": "Log in",
+  "contactUs": "Contact Us",
+  "email": "Email",
+  "phone": "Phone",
+  "followUs": "Follow Us",
+  "twitter": "Twitter",
+  "facebook": "Facebook",
+  "instagram": "Instagram",
+  "myWebsiteAllRightsReserved": "My Website. All Rights Reserved.",
+  "viewEnterprises": "View Enterprises",
+  "viewEnterprisesDescription": "View all the enterprises",
+  "pageNotFound": "Page Not Found",
+  "pageNotFoundDescription": "The page you are looking for does not exist",
+  "backToHome": "Back to Home",
+  "error404": "Error 404",
+  "viewEnterprise": "View Enterprise"
+}
