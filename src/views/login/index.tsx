@@ -27,7 +27,7 @@ const LoginView = () => {
 
   const formSchema = z.object({
     email: z.string().email(t("form:questions.email.codeError")),
-    password: z.string().min(6, t("form:questions.password.codeError")),
+    password: z.string().min(4, t("form:questions.password.codeError")),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
