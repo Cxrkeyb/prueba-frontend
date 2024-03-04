@@ -37,7 +37,7 @@ const LoginView = () => {
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
       .post(
-        "https://ray-stirring-probably.ngrok-free.app//users/v1/login",
+        "https://ray-stirring-probably.ngrok-free.app/users/v1/login",
         {
           email: data.email,
           password: data.password,

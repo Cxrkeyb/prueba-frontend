@@ -53,7 +53,7 @@ const ProductsView = () => {
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log("onSubmit", data);
     // axios
-    //   .put(`https://ray-stirring-probably.ngrok-free.app//products/v1/products/${product.id}`, data)
+    //   .put(`https://ray-stirring-probably.ngrok-free.app/products/v1/products/${product.id}`, data)
     //   .then((response) => {
     //     console.log(response);
     //   })
@@ -80,7 +80,7 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get(`https://ray-stirring-probably.ngrok-free.app//products/v1/products/${id}`)
+      .get(`https://ray-stirring-probably.ngrok-free.app/products/v1/products/${id}`)
       .then((response) => {
         console.log(response.data);
         setProduct(response.data);

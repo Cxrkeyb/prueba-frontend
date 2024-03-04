@@ -58,7 +58,7 @@ const ViewEnterpriseProducts = () => {
 
   useEffect(() => {
     axios
-      .get(`https://ray-stirring-probably.ngrok-free.app//products/v1/enterprise/${id}`)
+      .get(`https://ray-stirring-probably.ngrok-free.app/products/v1/enterprise/${id}`)
       .then((response) => {
         console.log(response);
         if (response.data) setProducts(response.data);

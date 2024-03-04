@@ -7,7 +7,7 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get("https://ray-stirring-probably.ngrok-free.app//products/v1/products")
+      .get("https://ray-stirring-probably.ngrok-free.app/products/v1/products")
       .then((response) => {
         setProducts(response.data);
       })

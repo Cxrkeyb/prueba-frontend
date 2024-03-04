@@ -38,7 +38,7 @@ const ProductsView = () => {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios.post(
-      "https://ray-stirring-probably.ngrok-free.app//products/v1",
+      "https://ray-stirring-probably.ngrok-free.app/products/v1",
       {
         code: data.code,
         name: data.productName,

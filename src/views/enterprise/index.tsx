@@ -35,7 +35,7 @@ const CreateEnterpriseView = () => {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
-      .post("https://ray-stirring-probably.ngrok-free.app//enterprises/v1/", data)
+      .post("https://ray-stirring-probably.ngrok-free.app/enterprises/v1/", data)
       .then((response) => {
         console.log(response);
       })

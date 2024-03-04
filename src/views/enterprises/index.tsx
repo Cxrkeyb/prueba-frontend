@@ -18,7 +18,7 @@ const EnterprisesView = () => {
 
   useEffect(() => {
     axios
-      .get("https://ray-stirring-probably.ngrok-free.app//enterprises/v1/")
+      .get("https://ray-stirring-probably.ngrok-free.app/enterprises/v1/")
       .then((response) => {
         console.log(response);
         if (response.data) setEnterprises(response.data);

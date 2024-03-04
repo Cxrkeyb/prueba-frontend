@@ -46,7 +46,7 @@ const EnterpriseIdView = () => {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
-      .put(`https://ray-stirring-probably.ngrok-free.app//enterprises/v1/${id}`, data)
+      .put(`https://ray-stirring-probably.ngrok-free.app/enterprises/v1/${id}`, data)
       .then((response) => {
         router.push(`/enterprise/${data.nit}`);
       })
@@ -66,7 +66,7 @@ const EnterpriseIdView = () => {
 
   const deleteEnterprise = () => {
     axios
-      .delete(`https://ray-stirring-probably.ngrok-free.app//enterprises/v1/${id}`)
+      .delete(`https://ray-stirring-probably.ngrok-free.app/enterprises/v1/${id}`)
       .then((response) => {
         router.push("/");
       })
@@ -77,7 +77,7 @@ const EnterpriseIdView = () => {
 
   useEffect(() => {
     axios
-      .get(`https://ray-stirring-probably.ngrok-free.app//enterprises/v1/${id}`)
+      .get(`https://ray-stirring-probably.ngrok-free.app/enterprises/v1/${id}`)
       .then((response) => {
         console.log(response);
         if (response.data) setEnterprise(response.data);
