@@ -109,7 +109,7 @@ const ProductsView = () => {
         `https://flummy.dev/api/product/${id}/`,
         {
           headers: {
-            "ngrok-skip-browser-warning": "69420",
+            "Authorization": "Token " + user?.token,
           },
         }
       )

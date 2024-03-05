@@ -101,7 +101,6 @@ const EnterpriseIdView = () => {
         },
       })
       .then((response) => {
-        console.log(response);
         if (response.data) setEnterprise(response.data[0]);
         if (!response.data) router.push("/");
       })
