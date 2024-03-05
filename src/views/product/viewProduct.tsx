@@ -22,48 +22,45 @@ import GoBackButton from "@/components/common/goBack";
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@radix-ui/react-dropdown-menu";
 import { Check, ChevronsUpDown } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Currency } from ".";
 
 const ProductsView = () => {
   const { t } = useTranslation(["common", "form"]);
   const [isEditing, setIsEditing] = React.useState(false);
   const [product, setProduct] = React.useState({
-    productCode: "123456789",
+    product_code: "123456789",
     name: "Producto 1",
     company: "Empresa 1",
-    currencies: {
-      USD: 50,
-      EUR: 100,
-      GBP: 200,
-    },
-    productProperties: "Caracteristica",
+    currencies: [],
+    product_properties: "Caracteristica",
   });
   const [category, setCategory] = React.useState<number[]>([]);
   const [quantityPrices, setQuantityPrices] = React.useState(1);
 
   const formSchema = z.object({
-    code: z.string().min(1, { message: t("form:questions.code.codeError") }),
+    product_code: z.string().min(1, { message: t("form:questions.code.codeError") }),
     name: z
       .string()
       .min(1, { message: t("form:questions.productName.codeError") }),
-    features: z.string().optional(),
-    prices: z
+    product_properties: z.string().optional(),
+    currencies: z
       .array(
         z.object({
-          price: z
+          value: z
             .number()
             .min(1, { message: t("form:questions.prices.codeError") }),
-          currency: z
+          code: z
             .string()
             .min(1, { message: t("form:questions.prices.codeError") }),
         })
       )
       .min(1, { message: t("form:questions.prices.codeError") }),
-    category: z
+    categories: z
       .array(
         z.number().min(1, { message: t("form:questions.category.codeError") })
       )
       .min(1, { message: t("form:questions. category.codeError") }),
-    nit: z.string(),
+    enterprise: z.string(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -78,7 +75,7 @@ const ProductsView = () => {
         data,
         {
           headers: {
-            "ngrok-skip-browser-warning": "69420",
+            "Authorization": "Token " + user?.token,
           },
         }
       )
@@ -135,12 +132,16 @@ const ProductsView = () => {
   useEffect(() => {
     axios
       .get(
-        `https://flummy.dev/api/product/enterprise-products/?id=${id}`
+        `https://flummy.dev/api/product/search/?id=${id}`, {
+          headers: {
+            "Authorization": "Token " + user?.token,
+          },
+        }
       )
       .then((response) => {
         console.log(response.data);
-        setProduct(response.data);
-        setQuantityPrices(response.data.prices.length);
+        setProduct(response.data[0]);
+        setQuantityPrices(response.data[0].currencies.length);
       })
       .catch((error) => {
         console.error(error);
@@ -149,9 +150,11 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get("https://flummy.dev/api/category/")
-      .then((response) => {
+    .get("https://flummy.dev/api/category/list_categories/")
+    .then((response) => {
         console.log(response.data);
+        const categoriesId = response.data.map((category: any) => category.id);
+        setCategory(categoriesId);
       })
       .catch((error) => {
         console.error(error);
@@ -169,7 +172,7 @@ const ProductsView = () => {
               <div className="flex flex-col lg:flex-row w-full gap-2">
                 <FormField
                   control={form.control}
-                  name="code"
+                  name="product_code"
                   render={({ field }) => (
                     <FormItem className="w-full md:w-1/2">
                       <FormLabel className="text-yellow-500 font-bold">
@@ -210,7 +213,7 @@ const ProductsView = () => {
 
               <FormField
                 control={form.control}
-                name="features"
+                name="product_properties"
                 render={({ field }) => (
                   <FormItem className="w-full">
                     <FormLabel className="text-yellow-500 font-bold">
@@ -230,15 +233,15 @@ const ProductsView = () => {
               />
               <FormField
                 control={form.control}
-                name="nit"
+                name="enterprise"
                 render={({ field }) => (
                   <FormItem className="w-full">
                     <FormLabel className="text-yellow-500 font-bold">
-                      {t("form:questions.nit.title")}
+                      {t("form:questions.idEnterprise.title")}
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={t("form:questions.nit.placeholder")}
+                        placeholder={t("form:questions.idEnterprise.placeholder")}
                         {...field}
                       />
                     </FormControl>
@@ -249,7 +252,7 @@ const ProductsView = () => {
 
               <FormField
                 control={form.control}
-                name="category"
+                name="categories"
                 render={({ field }) => (
                   <DropdownMenu>
                     <div className="flex flex-col gap-2 w-full">
@@ -269,21 +272,21 @@ const ProductsView = () => {
                               "text-gray-800",
                               "flex items-center justify-between",
                               "p-2",
-                              form.getValues("category")?.length > 0
+                              form.getValues("categories")?.length > 0
                                 ? "text-gray-800"
                                 : "text-gray-400"
                             )}
                           >
                             <div>
-                              {(form.getValues("category") || []).length > 0
-                                ? (form.getValues("category") || []).map(
+                              {(form.getValues("categories") || []).length > 0
+                                ? (form.getValues("categories") || []).map(
                                     (item, index) => (
                                       <span key={index}>
                                         {t(
                                           `form:questions.category.options.${item}`
                                         )}
                                         {index !==
-                                        (form.getValues("category") || [])
+                                        (form.getValues("categories") || [])
                                           .length -
                                           1
                                           ? ", "
@@ -314,28 +317,28 @@ const ProductsView = () => {
                         <DropdownMenuCheckboxItem
                           key={index}
                           checked={
-                            (form.getValues("category") || []).includes(item) ||
+                            (form.getValues("categories") || []).includes(item) ||
                             false
                           }
                           className="flex items-center justify-between px-4 py-2 w-full bg-white rounded-xl border border-gray-200 text-gray-800"
                           onCheckedChange={(checked) => {
                             const categoryValues =
-                              form.getValues("category") || [];
+                              form.getValues("categories") || [];
                             if (checked) {
-                              form.setValue("category", [
+                              form.setValue("categories", [
                                 ...categoryValues,
                                 item,
                               ]);
                             } else {
                               form.setValue(
-                                "category",
+                                "categories",
                                 categoryValues.filter((v) => v !== item)
                               );
                             }
                           }}
                         >
                           {t(`form:questions.category.options.${item}`)}{" "}
-                          {(form.getValues("category") || []).includes(
+                          {(form.getValues("categories") || []).includes(
                             item
                           ) && <Check className="w-4 h-4" />}
                         </DropdownMenuCheckboxItem>
@@ -347,7 +350,7 @@ const ProductsView = () => {
 
               <FormField
                 control={form.control}
-                name="prices"
+                name="currencies"
                 render={({ field }) => (
                   <FormItem className="w-full">
                     <FormLabel className="text-yellow-500 font-bold">
@@ -360,15 +363,15 @@ const ProductsView = () => {
                             placeholder={t(
                               "form:questions.currency.placeholder"
                             )}
-                            name={`prices[${index}].currency`}
+                            name={`currencies[${index}].code`}
                             onChange={(event) => {
                               form.setValue(
-                                `prices.${index}.currency`,
+                                `currencies.${index}.code`,
                                 event.target.value
                               );
                             }}
                             value={
-                              form.getValues(`prices.${index}.currency`) || ""
+                              form.getValues(`currencies.${index}.code`) || ""
                             }
                           />
                         </FormControl>
@@ -376,15 +379,15 @@ const ProductsView = () => {
                           <Input
                             placeholder={t("form:questions.prices.placeholder")}
                             {...field}
-                            name={`prices[${index}].price`}
+                            name={`currencies[${index}].value`}
                             onChange={(event) => {
                               form.setValue(
-                                `prices.${index}.price`,
+                                `currencies.${index}.value`,
                                 Number(event.target.value)
                               );
                             }}
                             value={
-                              form.getValues(`prices.${index}.price`) || ""
+                              form.getValues(`currencies.${index}.value`) || ""
                             }
                           />
                         </FormControl>
@@ -435,29 +438,23 @@ const ProductsView = () => {
           <p className="text-yellow-500 font-bold mb-2">
             {t("form:questions.code.placeholder")}:{" "}
             <span className="text-black font-light">
-              {product?.productCode}
+              {product?.product_code}
             </span>
           </p>
           <p className="text-yellow-500 font-bold mb-2">
             {t("form:questions.characteristics.placeholder")}:{" "}
             <span className="text-black font-light">
-              {product?.productProperties}
+              {product?.product_properties}
             </span>
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="text-yellow-500 font-bold">
-              <p>{t("form:questions.prices.titleUSD")}:</p>
-              <p className="text-black font-light">{product?.currencies.USD}</p>
-            </div>
-            <div className="text-yellow-500 font-bold">
-              <p>{t("form:questions.prices.titleEUR")}:</p>
-              <p className="text-black font-light">{product?.currencies.EUR}</p>
-            </div>
-            <div className="text-yellow-500 font-bold">
-              <p>{t("form:questions.prices.titleGBP")}:</p>
-              <p className="text-black font-light">{product?.currencies.GBP}</p>
-            </div>
-          </div>
+          {
+            product?.currencies && product?.currencies.length > 0 && product?.currencies.map((currency: Currency, index) => (
+              <div key={index} className="text-gray-800 flex gap-2">
+                <p className="text-yellow-500 font-bold">{currency.code}: </p>
+                <p>{currency.value}</p>
+              </div>
+            ))
+          }
           {userRole === 1 && (
             <div className="flex flex-col md:flex-row gap-4 mt-4 w-full">
               <motion.div
