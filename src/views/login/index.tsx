@@ -39,7 +39,7 @@ const LoginView = () => {
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
       .post(
-        "https://dc3a-181-78-80-165.ngrok-free.app/api/user/login/",
+        "https://flummy.dev/api/user/login/",
         {
           email: data.email,
           password: data.password,

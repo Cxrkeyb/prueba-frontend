@@ -50,7 +50,7 @@ const EnterpriseIdView = () => {
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
       .put(
-        `https://dc3a-181-78-80-165.ngrok-free.app/api/enterprise/${id}/`,
+        `https://flummy.dev/api/enterprise/${id}/`,
         data,
         {
           headers: {
@@ -78,7 +78,7 @@ const EnterpriseIdView = () => {
   const deleteEnterprise = () => {
     axios
       .delete(
-        `https://dc3a-181-78-80-165.ngrok-free.app/api/enterprise/${id}`,
+        `https://flummy.dev/api/enterprise/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -97,7 +97,7 @@ const EnterpriseIdView = () => {
   useEffect(() => {
     axios
       .get(
-        `https://dc3a-181-78-80-165.ngrok-free.app/api/enterprise/search/?nit=${id}`,
+        `https://flummy.dev/api/enterprise/search/?nit=${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",

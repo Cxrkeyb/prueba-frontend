@@ -20,13 +20,14 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get("https://dc3a-181-78-80-165.ngrok-free.app/api/product/", {
+      .get("https://flummy.dev/api/product/", {
         headers: { 
           "ngrok-skip-browser-warning": "69420",
         }
       })
       .then((response) => {
-        if (response.data) setProducts(response.data);
+        console.log(response);
+        // if (response.data) setProducts(response.data);
       })
       .catch((error) => {
         console.error(error);

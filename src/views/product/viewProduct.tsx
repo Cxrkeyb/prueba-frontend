@@ -74,7 +74,7 @@ const ProductsView = () => {
     console.log("onSubmit", data);
     axios
       .put(
-        `https://dc3a-181-78-80-165.ngrok-free.app/api/product/${id}/`,
+        `https://flummy.dev/api/product/${id}/`,
         data,
         {
           headers: {
@@ -109,7 +109,7 @@ const ProductsView = () => {
   const deleteProduct = () => {
     axios
       .delete(
-        `https://dc3a-181-78-80-165.ngrok-free.app/api/product/${id}/`,
+        `https://flummy.dev/api/product/${id}/`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",
@@ -135,7 +135,7 @@ const ProductsView = () => {
   useEffect(() => {
     axios
       .get(
-        `https://dc3a-181-78-80-165.ngrok-free.app/api/product/enterprise-products/?id=${id}`,
+        `https://flummy.dev/api/product/enterprise-products/?id=${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",
@@ -154,7 +154,7 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get("https://dc3a-181-78-80-165.ngrok-free.app/api/category/")
+      .get("https://flummy.dev/api/category/")
       .then((response) => {
         console.log(response.data);
       })

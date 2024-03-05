@@ -22,7 +22,7 @@ const ViewEnterpriseProducts = () => {
   useEffect(() => {
     axios
       .get(
-        `https://dc3a-181-78-80-165.ngrok-free.app/api/product/enterprise-products/?id=${id}`,
+        `https://flummy.dev/api/product/enterprise-products/?id=${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",

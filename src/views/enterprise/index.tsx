@@ -38,7 +38,7 @@ const CreateEnterpriseView = () => {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
-      .post("https://dc3a-181-78-80-165.ngrok-free.app/api/enterprise/", data, {
+      .post("https://flummy.dev/api/enterprise/", data, {
         headers: {
           "ngrok-skip-browser-warning": "69420",
         },
