@@ -23,7 +23,7 @@ const EnterprisesView = () => {
     const fetchEnterprises = async () => {
       try {
         const response = await axios.get(
-          "http://18.234.124.123:8000/api/enterprise/list_enterprises/",
+          "https://dc3a-181-78-80-165.ngrok-free.app/api/enterprise/list_enterprises/",
           {
             headers: {
               "ngrok-skip-browser-warning": "69420",

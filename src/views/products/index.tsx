@@ -20,7 +20,7 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get("http://18.234.124.123:8000/api/product/", {
+      .get("https://dc3a-181-78-80-165.ngrok-free.app/api/product/", {
         headers: { 
           "ngrok-skip-browser-warning": "69420",
         }

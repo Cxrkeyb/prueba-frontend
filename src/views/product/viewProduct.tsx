@@ -74,7 +74,7 @@ const ProductsView = () => {
     console.log("onSubmit", data);
     axios
       .put(
-        `http://18.234.124.123:8000/api/product/${id}/`,
+        `https://dc3a-181-78-80-165.ngrok-free.app/api/product/${id}/`,
         data,
         {
           headers: {
@@ -109,7 +109,7 @@ const ProductsView = () => {
   const deleteProduct = () => {
     axios
       .delete(
-        `http://18.234.124.123:8000/api/product/${id}/`,
+        `https://dc3a-181-78-80-165.ngrok-free.app/api/product/${id}/`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",
@@ -135,7 +135,7 @@ const ProductsView = () => {
   useEffect(() => {
     axios
       .get(
-        `http://18.234.124.123:8000/api/product/enterprise-products/?id=${id}`,
+        `https://dc3a-181-78-80-165.ngrok-free.app/api/product/enterprise-products/?id=${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",
@@ -154,7 +154,7 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get("http://18.234.124.123:8000/api/category/")
+      .get("https://dc3a-181-78-80-165.ngrok-free.app/api/category/")
       .then((response) => {
         console.log(response.data);
       })

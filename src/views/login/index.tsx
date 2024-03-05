@@ -39,7 +39,7 @@ const LoginView = () => {
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
       .post(
-        "http://18.234.124.123:8000/api/user/login/",
+        "https://dc3a-181-78-80-165.ngrok-free.app/api/user/login/",
         {
           email: data.email,
           password: data.password,
