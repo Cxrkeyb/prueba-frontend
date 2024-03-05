@@ -62,6 +62,7 @@ const EnterpriseIdView = () => {
       .catch((error) => {
         console.error(error);
       });
+    // @ts-ignore
     setEnterprise(data);
     toggleEditing();
   }

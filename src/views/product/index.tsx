@@ -9,13 +9,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-} from "@/components/ui/command";
-import {
   Form,
   FormControl,
   FormField,
@@ -347,6 +340,7 @@ const ProductsView = () => {
                           />
                         </FormControl>
                         <FormControl>
+                          {/* @ts-ignore */}
                           <Input
                             placeholder={t("form:questions.prices.placeholder")}
                             {...field}
