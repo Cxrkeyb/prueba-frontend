@@ -44,11 +44,11 @@ const LoginView = () => {
           email: data.email,
           password: data.password,
         },
-        {
-          headers: {
-            "ngrok-skip-browser-warning": "69420",
-          },
-        }
+        // {
+        //   headers: {
+        //     "ngrok-skip-browser-warning": "69420",
+        //   },
+        // }
       )
       .then((response) => {
         Swal.fire("Inicio de sesión exitoso", "Bienvenido", "success");
