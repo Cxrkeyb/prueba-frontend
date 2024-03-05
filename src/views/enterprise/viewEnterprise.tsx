@@ -33,7 +33,8 @@ const EnterpriseIdView = () => {
     nit: "123456789",
     name: "Empresa 1",
     address: "Calle 123",
-    phoneNumber: "1234567",
+    phone_number: "1234567",
+    id: "123456789",
   });
 
   const formSchema = z.object({
@@ -41,6 +42,7 @@ const EnterpriseIdView = () => {
     name: z.string().min(6).max(100),
     address: z.string().min(6).max(100),
     phoneNumber: z.string().min(6).max(100),
+    country: z.string().min(6).max(100),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -49,15 +51,11 @@ const EnterpriseIdView = () => {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
-      .put(
-        `https://flummy.dev/api/enterprise/${id}/`,
-        data,
-        {
-          headers: {
-            "ngrok-skip-browser-warning": "69420",
-          },
-        }
-      )
+      .put(`https://flummy.dev/api/enterprise/${id}/`, data, {
+        headers: {
+          "ngrok-skip-browser-warning": "69420",
+        },
+      })
       .then((response) => {
         router.push(`/enterprise/${data.nit}`);
       })
@@ -77,15 +75,12 @@ const EnterpriseIdView = () => {
 
   const deleteEnterprise = () => {
     axios
-      .delete(
-        `https://flummy.dev/api/enterprise/${id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
-      )
+      .delete(`https://flummy.dev/api/enterprise/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
       .then((response) => {
         router.push("/");
       })
@@ -96,16 +91,14 @@ const EnterpriseIdView = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `https://flummy.dev/api/enterprise/search/?nit=${id}`,
-        {
-          headers: {
-            "ngrok-skip-browser-warning": "69420",
-          },
-        }
-      )
+      .get(`https://flummy.dev/api/enterprise/search/?nit=${id}`, {
+        headers: {
+          "Authorization": "Token " + user?.token,
+        },
+      })
       .then((response) => {
-        if (response.data) setEnterprise(response.data);
+        console.log(response);
+        if (response.data) setEnterprise(response.data[0]);
         if (!response.data) router.push("/");
       })
       .catch((error) => {
@@ -197,6 +190,25 @@ const EnterpriseIdView = () => {
               )}
             />
 
+            <FormField
+              control={form.control}
+              name="country"
+              render={({ field }) => (
+                <FormItem className="w-full">
+                  <FormLabel className="">
+                    {t("form:questions.country.title")}
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder={t("form:questions.country.placeholder")}
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             <Button className="bg-blue-500" type="submit">
               {t("common:submit")}
             </Button>
@@ -240,12 +252,12 @@ const EnterpriseIdView = () => {
               <p className="text-yellow-500 font-bold">
                 {t("form:questions.phoneNumber.placeholder")}:
               </p>
-              <p className="text-black font-light">{enterprise?.phoneNumber}</p>
+              <p className="text-black font-light">{enterprise?.phone_number}</p>
             </div>
           </div>
 
           <div className="flex flex-col gap-2">
-            {user?.type === 2 && (
+            {user?.type === 1 && (
               <>
                 <motion.div
                   initial={{ scale: 0 }}
@@ -283,7 +295,7 @@ const EnterpriseIdView = () => {
             >
               <Button
                 onClick={() => {
-                  router.push(`/enterprise/${enterprise?.nit}/products`);
+                  router.push(`/enterprise/${enterprise?.id}/products`);
                 }}
                 className="mt-4 md:mt-0 bg-black text-white w-full"
               >

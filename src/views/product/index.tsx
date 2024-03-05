@@ -33,12 +33,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
+import userStore from "@/store/userStore";
+import { useRouter } from "next/router";
 
 const category = [1, 2, 3, 4];
 
-interface Currency {
-  price: number;
-  currency: string;
+export interface Currency {
+  value: number;
+  code: string;
 }
 
 const ProductsView = () => {
@@ -55,12 +57,10 @@ const ProductsView = () => {
     prices: z
       .array(
         z.object({
-          price: z
-            .number()
-            .min(1, { message: t("form:questions.prices.codeError") }),
-          currency: z
-            .string()
-            .min(1, { message: t("form:questions.prices.codeError") }),
+          value: z.number().min(1, {
+            message: t("form:questions.prices.valueError"),
+          }),
+          code: z.string().min(1, { message: t("form:questions.currencyError") }),
         })
       )
       .min(1, { message: t("form:questions.prices.codeError") }),
@@ -69,25 +69,35 @@ const ProductsView = () => {
         z.number().min(1, { message: t("form:questions.category.codeError") })
       )
       .min(1, { message: t("form:questions. category.codeError") }),
-    nit: z.string(),
+    id: z.string(),
   });
+
+  const user = userStore((state) => state.user);
+
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   function onSubmit(data: z.infer<typeof formSchema>) {
+    console.log(data);
     axios
       .post("https://flummy.dev/api/product/", {
-        code: data.code,
+        product_code: data.code,
         name: data.name,
-        features: data.features,
+        product_properties: data.features,
         prices: data.prices,
-        nit: data.nit,
-        category: data.category
+        enterprise: data.id,
+        categories: data.category
+      }, {
+        headers: {
+          "Authorization": "Token " + user?.token,
+        },
       })
       .then((response) => {
         console.log(response);
+        router.push(`/enterprise/${response.data.enterprise}`);
       })
       .catch((error) => {
         console.error(error);
@@ -106,6 +116,7 @@ const ProductsView = () => {
     axios
       .get("https://flummy.dev/api/category/list_categories/")
       .then((response) => {
+        console.log(response);
         setCategories(response.data);
       })
       .catch((error) => {
@@ -195,15 +206,15 @@ const ProductsView = () => {
               />
               <FormField
                 control={form.control}
-                name="nit"
+                name="id"
                 render={({ field }) => (
                   <FormItem className="w-full">
                     <FormLabel className="text-yellow-500 font-bold">
-                      {t("form:questions.nit.title")}
+                      {t("form:questions.idEnterprise.title")}
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={t("form:questions.nit.placeholder")}
+                        placeholder={t("form:questions.idEnterprise.placeholder")}
                         {...field}
                       />
                     </FormControl>
@@ -325,32 +336,27 @@ const ProductsView = () => {
                             placeholder={t(
                               "form:questions.currency.placeholder"
                             )}
-                            name={`prices[${index}].currency`}
+                            name={`prices[${index}].code`}
                             onChange={(event) => {
                               form.setValue(
-                                `prices.${index}.currency`,
+                                `prices.${index}.code`,
                                 event.target.value
                               );
                             }}
-                            value={
-                              form.getValues(`prices.${index}.currency`) || ""
-                            }
+                          
                           />
                         </FormControl>
                         <FormControl>
                           <Input
                             placeholder={t("form:questions.prices.placeholder")}
                             {...field}
-                            name={`prices[${index}].price`}
+                            name={`prices[${index}].value`}
                             onChange={(event) => {
                               form.setValue(
-                                `prices.${index}.price`,
+                                `prices.${index}.value`,
                                 Number(event.target.value)
                               );
                             }}
-                            value={
-                              form.getValues(`prices.${index}.price`) || ""
-                            }
                           />
                         </FormControl>
                         {index < quantityPrices - 1 && (

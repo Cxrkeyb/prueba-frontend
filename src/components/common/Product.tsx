@@ -3,17 +3,14 @@ import React from "react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/router";
 import RandomImage from "./randomImage";
+import { Currency } from "@/views/product";
 
 interface Product {
   name: string;
-  nit: string;
-  productCode: string;
-  currencies: {
-    USD: number;
-    EUR: number;
-    GBP: number;
-  };
-  productProperties: string;
+  enterprise: string;
+  product_code: string;
+  currencies: Currency[];
+  product_properties: string;
   id: string;
 }
 
@@ -35,37 +32,28 @@ const ProductComponent: React.FC<ProductProps> = ({ product, index }) => {
           <p className="text-yellow-500 font-bold">
             {t("form:questions.nit.title")}:
           </p>
-          <p>{id ? id : product.nit}</p>
+          <p>{id ? id : product.id}</p>
         </div>
         <div className="text-gray-800">
           <p className="text-yellow-500 font-bold">
             {t("form:questions.code.title")}:
           </p>
-          <p>{product.productCode}</p>
+          <p>{product.product_code}</p>
         </div>
-        <div className="text-gray-800">
-          <p className="text-yellow-500 font-bold">
-            {t("form:questions.prices.titleUSD")}:
-          </p>
-          <p>{product?.currencies.USD}</p>
-        </div>
-        <div className="text-gray-800">
-          <p className="text-yellow-500 font-bold">
-            {t("form:questions.prices.titleEUR")}:
-          </p>
-          <p>{product?.currencies.EUR}</p>
-        </div>
-        <div className="text-gray-800">
-          <p className="text-yellow-500 font-bold">
-            {t("form:questions.prices.titleGBP")}:
-          </p>
-          <p>{product?.currencies.GBP}</p>
-        </div>
+        {
+          product.currencies && product.currencies.length > 0 && product.currencies.map((currency: Currency, index) => (
+            <div key={index} className="text-gray-800 flex gap-2">
+              <p className="text-yellow-500 font-bold">{currency.code}: </p>
+              <p>{currency.value}</p>
+            </div>
+          ))
+        }
+
         <div className="text-gray-800">
           <p className="text-yellow-500 font-bold">
             {t("form:questions.characteristics.title")}:
           </p>
-          <p>{product.productProperties}</p>
+          <p>{product.product_properties}</p>
         </div>
       </div>
       <RandomImage search={product.name} />

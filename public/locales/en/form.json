@@ -12,6 +12,11 @@
       "placeholder": "Code",
       "codeError": "Invalid code"
     },
+    "idEnterprise": {
+      "title": "Company ID",
+      "placeholder": "ID",
+      "codeError": "Invalid company ID"
+    },
     "productName": {
       "title": "Product Name",
       "placeholder": "Product name",

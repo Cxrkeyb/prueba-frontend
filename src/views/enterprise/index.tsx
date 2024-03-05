@@ -25,7 +25,11 @@ const formSchema = z.object({
   nit: z.string().min(6).max(100),
   name: z.string().min(6).max(100),
   address: z.string().min(6).max(100),
-  phoneNumber: z.string().min(6).max(100),
+  phone_number: z.string().min(6).max(100),
+  country: z.string().min(6).max(100),
+  products: z.array(
+    z.number()
+  ).optional()
 });
 
 const CreateEnterpriseView = () => {
@@ -40,6 +44,7 @@ const CreateEnterpriseView = () => {
   });
 
   function onSubmit(data: z.infer<typeof formSchema>) {
+    data.products = []
     axios
       .post("https://flummy.dev/api/enterprise/", data, {
         headers: {
@@ -131,7 +136,7 @@ const CreateEnterpriseView = () => {
 
               <FormField
                 control={form.control}
-                name="phoneNumber"
+                name="phone_number"
                 render={({ field }) => (
                   <FormItem className="w-full">
                     <FormLabel className="text-yellow-500 font-bold">
@@ -142,6 +147,25 @@ const CreateEnterpriseView = () => {
                         placeholder={t(
                           "form:questions.phoneNumber.placeholder"
                         )}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="country"
+                render={({ field }) => (
+                  <FormItem className="w-full">
+                    <FormLabel className="">
+                      {t("form:questions.country.title")}
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder={t("form:questions.country.placeholder")}
                         {...field}
                       />
                     </FormControl>

@@ -25,11 +25,12 @@ const ViewEnterpriseProducts = () => {
         `https://flummy.dev/api/product/enterprise-products/?id=${id}`,
         {
           headers: {
-            "ngrok-skip-browser-warning": "69420",
+            "Authorization": "Token " + user?.token,
           },
         }
       )
       .then((response) => {
+        console.log(response);
         if (response.data) setProducts(response.data);
       })
       .catch((error) => {
@@ -51,7 +52,7 @@ const ViewEnterpriseProducts = () => {
           </p>
         )}
       </div>
-      {user && user.type === 2 && (
+      {user && user.type === 1 && (
         <Button onClick={goToCreateProduct}>{t("createProduct")}</Button>
       )}
     </div>
