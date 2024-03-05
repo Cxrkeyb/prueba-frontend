@@ -213,7 +213,7 @@ const EnterpriseIdView = () => {
     <div className="container mx-auto mt-8">
       <div className="bg-gray-100 shadow-xl border rounded-lg p-6 flex flex-col md:flex-row md:gap-6 items-center relative">
         <GoBackButton />
-        <div className="flex flex-col mb-4 md:mb-0 md:w-1/2">
+        <div className="flex flex-col mb-4 md:mb-0 md:w-1/2 mt-[50px]">
           <h2 className="text-xl font-bold mb-2 text-blue-800">{enterprise?.name}</h2>
           <div className="flex flex-col md:gap-6">
             <div className="mb-4 md:w-1/2">
