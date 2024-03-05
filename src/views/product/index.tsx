@@ -80,7 +80,7 @@ const ProductsView = () => {
         product_code: data.code,
         name: data.name,
         product_properties: data.features,
-        prices: data.prices,
+        currencies: data.prices,
         enterprise: data.id,
         categories: data.category
       }, {

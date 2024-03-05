@@ -60,7 +60,7 @@ const ProductsView = () => {
         z.number().min(1, { message: t("form:questions.category.codeError") })
       )
       .min(1, { message: t("form:questions. category.codeError") }),
-    enterprise: z.string(),
+    enterprise: z.number(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -119,14 +119,6 @@ const ProductsView = () => {
       .catch((error) => {
         console.error(error);
       });
-  };
-
-  const increaseQuantityPrices = () => {
-    setQuantityPrices(quantityPrices + 1);
-  };
-
-  const decreaseQuantityPrices = () => {
-    setQuantityPrices(quantityPrices - 1);
   };
 
   useEffect(() => {
@@ -345,74 +337,6 @@ const ProductsView = () => {
                       ))}
                     </DropdownMenuContent>
                   </DropdownMenu>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="currencies"
-                render={({ field }) => (
-                  <FormItem className="w-full">
-                    <FormLabel className="text-yellow-500 font-bold">
-                      {t("form:questions.prices.title")}
-                    </FormLabel>
-                    {Array.from({ length: quantityPrices }).map((_, index) => (
-                      <div key={index} className="flex gap-2 items-center">
-                        <FormControl>
-                          <Input
-                            placeholder={t(
-                              "form:questions.currency.placeholder"
-                            )}
-                            name={`currencies[${index}].code`}
-                            onChange={(event) => {
-                              form.setValue(
-                                `currencies.${index}.code`,
-                                event.target.value
-                              );
-                            }}
-                            value={
-                              form.getValues(`currencies.${index}.code`) || ""
-                            }
-                          />
-                        </FormControl>
-                        <FormControl>
-                          <Input
-                            placeholder={t("form:questions.prices.placeholder")}
-                            {...field}
-                            name={`currencies[${index}].value`}
-                            onChange={(event) => {
-                              form.setValue(
-                                `currencies.${index}.value`,
-                                Number(event.target.value)
-                              );
-                            }}
-                            value={
-                              form.getValues(`currencies.${index}.value`) || ""
-                            }
-                          />
-                        </FormControl>
-                        {index < quantityPrices - 1 && (
-                          <Button
-                            onClick={decreaseQuantityPrices}
-                            type="button"
-                            className="bg-yellow-500 text-black w-8 h-8 flex items-center justify-center"
-                          >
-                            -
-                          </Button>
-                        )}
-                        {index === quantityPrices - 1 && (
-                          <Button
-                            onClick={increaseQuantityPrices}
-                            type="button"
-                            className="bg-yellow-500 text-black w-8 h-8 flex items-center justify-center"
-                          >
-                            +
-                          </Button>
-                        )}
-                      </div>
-                    ))}
-                    <FormMessage />
-                  </FormItem>
                 )}
               />
               <Button className="bg-yellow-500 text-black w-full" type="submit">
