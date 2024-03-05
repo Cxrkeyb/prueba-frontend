@@ -270,7 +270,7 @@ const ProductsView = () => {
     <div className="container mx-auto mt-8 mb-8">
       <div className="bg-gray-100 border shadow-xl rounded-lg p-6 flex flex-col md:flex-row gap-4 items-center relative">
         <GoBackButton />
-        <div className="md:w-1/2 flex flex-col gap-2 justify-center">
+        <div className="md:w-1/2 flex flex-col gap-2 justify-center mt-[50px]">
           <h2 className="text-2xl text-blue-700 font-bold mb-4">
             {product?.name}
           </h2>

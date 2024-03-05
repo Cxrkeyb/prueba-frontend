@@ -33,8 +33,25 @@ function ActionsButtons() {
             <SheetHeader>
               <SheetDescription>
                 <div className="flex flex-col space-y-4 items-start w-full text-lg text-black mt-10">
-                  <Link href="/login">{t("signIn")}</Link>
-                  <Link href="/login">{t("getStarted")}</Link>
+                  {!user?.name && (
+                    <Button
+                      onClick={() => {
+                        router.push("/login");
+                      }}
+                      className="text-lg"
+                      variant="ghost"
+                    >
+                      {t("login")}
+                    </Button>
+                  )}
+                  <Button
+                    onClick={() => {
+                      router.push("/enterprises");
+                    }}
+                    className="text-lg bg-blue-500 hover:bg-blue-600"
+                  >
+                    {t("viewEnterprises")}
+                  </Button>
                 </div>
               </SheetDescription>
             </SheetHeader>
