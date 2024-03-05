@@ -104,7 +104,7 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get("http://18.234.124.123:8000/api/category/v1")
+      .get("http://18.234.124.123:8000/api/category/")
       .then((response) => {
         setCategories(response.data);
       })

@@ -135,7 +135,7 @@ const ProductsView = () => {
   useEffect(() => {
     axios
       .get(
-        `http://18.234.124.123:8000/api/products/v1/products/${id}`,
+        `http://18.234.124.123:8000/api/product/enterprise-products/?id=${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",
@@ -154,7 +154,7 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get("http://18.234.124.123:8000/api/category/v1")
+      .get("http://18.234.124.123:8000/api/category/")
       .then((response) => {
         console.log(response.data);
       })
