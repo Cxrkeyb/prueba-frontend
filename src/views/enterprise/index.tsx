@@ -18,6 +18,7 @@ import {
 import { useTranslation } from "next-i18next";
 import { FormLabel } from "@mui/material";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const formSchema = z.object({
   nit: z.string().min(6).max(100),
@@ -29,15 +30,21 @@ const formSchema = z.object({
 const CreateEnterpriseView = () => {
   const { t } = useTranslation(["common", "form", "constants"]);
 
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
-      .post("https://3c4f-181-78-80-164.ngrok-free.app/enterprises/v1/", data)
+      .post("https://3c4f-181-78-80-164.ngrok-free.app/enterprises/v1/", data, {
+        headers: {
+          "ngrok-skip-browser-warning": "69420",
+        },
+      })
       .then((response) => {
-        console.log(response);
+        router.push(`/enterprises/`);
       })
       .catch((error) => {
         console.error(error);

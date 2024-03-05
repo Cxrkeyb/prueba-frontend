@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import userStore from "@/store/userStore";
 
 interface Empresa {
   nit: string; // NIT (Llave primaria)
@@ -12,9 +13,16 @@ interface Empresa {
 }
 
 const EnterprisesView = () => {
-  const { t } = useTranslation(["common", "form", "constants"]);
+  const { t } = useTranslation(["common", "form"]);
 
   const [enterprises, setEnterprises] = useState<Empresa[]>([]);
+
+  const router = useRouter();
+  const { user } = userStore();
+
+  const goToCreateEnterprise = () => {
+    router.push(`/enterprise/`);
+  }
 
   useEffect(() => {
     axios
@@ -32,12 +40,8 @@ const EnterprisesView = () => {
       });
   }, []);
 
-  const router = useRouter();
-
-  console.log(enterprises);
-
   return (
-    <div className="container mx-auto mt-8 flex flex-col gap-4">
+    <div className="container mx-auto mt-8 flex flex-col gap-4 mb-[200px]">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {enterprises.map((enterprise, index) => (
           <div key={index} className="m-4 p-4 bg-white rounded shadow-md w-80">
@@ -56,6 +60,9 @@ const EnterprisesView = () => {
           </div>
         ))}
       </div>
+      {user && user.role === "admin" && (
+        <Button onClick={goToCreateEnterprise}>{t("form:createCompany")}</Button>
+      )}
     </div>
   );
 };

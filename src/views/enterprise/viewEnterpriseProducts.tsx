@@ -29,7 +29,6 @@ const ViewEnterpriseProducts = () => {
         }
       )
       .then((response) => {
-        console.log(response);
         if (response.data) setProducts(response.data);
       })
       .catch((error) => {
@@ -40,9 +39,13 @@ const ViewEnterpriseProducts = () => {
   return (
     <div className="container mx-auto mt-8 flex flex-col gap-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {products.map((product, index) => (
-          <ProductComponent key={index} product={product} index={index} />
-        ))}
+        {products.length > 0 ? (
+          products.map((product, index) => (
+            <ProductComponent key={index} product={product} index={index} />
+          ))
+        ) : (
+          <p className="mb-[500px] text-center">No hay productos disponibles en este momento.</p>
+        )}
       </div>
       {user && user.role === "admin" && (
         <Button onClick={goToCreateProduct}>{t("createProduct")}</Button>

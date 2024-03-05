@@ -198,7 +198,7 @@ const EnterpriseIdView = () => {
   }
 
   return (
-    <div className="container mx-auto mt-8">
+    <div className="container mx-auto mt-8 mb-[200px]">
       <div className="bg-white shadow-md rounded-lg p-6">
         <div>
           <h2 className="text-xl font-bold mb-4">{enterprise?.name}</h2>

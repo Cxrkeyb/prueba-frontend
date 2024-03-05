@@ -65,7 +65,6 @@ const ProductsView = () => {
         }
       )
       .then((response) => {
-        console.log(response);
         router.push(`/product/${id}`);
       })
       .catch((error) => {
@@ -99,7 +98,6 @@ const ProductsView = () => {
         }
       )
       .then((response) => {
-        console.log(response);
         router.push("/");
       })
       .catch((error) => {
