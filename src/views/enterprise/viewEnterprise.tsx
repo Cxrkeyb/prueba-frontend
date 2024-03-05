@@ -82,8 +82,7 @@ const EnterpriseIdView = () => {
     axios
       .delete(`https://flummy.dev/api/enterprise/${id}`, {
         headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
+          "Authorization": "Token " + user?.token,
         },
       })
       .then((response) => {
