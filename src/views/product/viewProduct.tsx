@@ -16,8 +16,10 @@ import { FormLabel } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/router";
 import userStore from "@/store/userStore";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import RandomImage from "@/components/common/randomImage";
+import { ArrowBigLeftIcon } from "lucide-react";
+import GoBackButton from "@/components/common/goBack";
 
 const ProductsView = () => {
   const { t } = useTranslation(["common", "form"]);
@@ -266,9 +268,12 @@ const ProductsView = () => {
 
   return (
     <div className="container mx-auto mt-8 mb-8">
-      <div className="bg-gray-100 border shadow-xl rounded-lg p-6 flex flex-col md:flex-row gap-4 items-center">
+      <div className="bg-gray-100 border shadow-xl rounded-lg p-6 flex flex-col md:flex-row gap-4 items-center relative">
+        <GoBackButton />
         <div className="md:w-1/2 flex flex-col gap-2 justify-center">
-          <h2 className="text-2xl text-blue-700 font-bold mb-4">{product?.name}</h2>
+          <h2 className="text-2xl text-blue-700 font-bold mb-4">
+            {product?.name}
+          </h2>
           <p className="text-blue-500 font-bold mb-2">
             {t("form:questions.code.placeholder")}:{" "}
             <span className="text-gray-800 font-light">
@@ -309,10 +314,7 @@ const ProductsView = () => {
                 transition={{ duration: 0.5 }}
                 className="w-full"
               >
-                <Button
-                  onClick={deleteProduct}
-                  className="bg-red-500 w-full"
-                >
+                <Button onClick={deleteProduct} className="bg-red-500 w-full">
                   {t("form:questions.delete")}
                 </Button>
               </motion.div>

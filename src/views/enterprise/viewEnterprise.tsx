@@ -18,6 +18,7 @@ import axios from "axios";
 import userStore from "@/store/userStore";
 import RandomImage from "@/components/common/randomImage";
 import { motion } from "framer-motion";
+import GoBackButton from "@/components/common/goBack";
 
 const EnterpriseIdView = () => {
   const { t } = useTranslation(["common", "form"]);
@@ -210,9 +211,10 @@ const EnterpriseIdView = () => {
 
   return (
     <div className="container mx-auto mt-8">
-      <div className="bg-gray-100 shadow-xl border rounded-lg p-6 flex flex-col md:flex-row md:gap-6 items-center">
+      <div className="bg-gray-100 shadow-xl border rounded-lg p-6 flex flex-col md:flex-row md:gap-6 items-center relative">
+        <GoBackButton />
         <div className="flex flex-col mb-4 md:mb-0 md:w-1/2">
-          <h2 className="text-xl font-bold mb-2">{enterprise?.name}</h2>
+          <h2 className="text-xl font-bold mb-2 text-blue-800">{enterprise?.name}</h2>
           <div className="flex flex-col md:gap-6">
             <div className="mb-4 md:w-1/2">
               <p className="text-blue-500 font-bold">
