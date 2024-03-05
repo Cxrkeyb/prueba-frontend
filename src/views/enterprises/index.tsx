@@ -26,7 +26,7 @@ const EnterprisesView = () => {
 
   useEffect(() => {
     axios
-      .get("https://immortal-longhorn-trusty.ngrok-free.apenterprises/v1/", {
+      .get("https://immortal-longhorn-trusty.ngrok-free.appenterprises/v1/", {
         headers: {
           "ngrok-skip-browser-warning": "69420",
         },

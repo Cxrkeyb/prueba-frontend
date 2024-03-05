@@ -21,7 +21,7 @@ const ViewEnterpriseProducts = () => {
   useEffect(() => {
     axios
       .get(
-        `https://immortal-longhorn-trusty.ngrok-free.approducts/v1/enterprise/${id}`,
+        `https://immortal-longhorn-trusty.ngrok-free.app/products/v1/enterprise/${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",
