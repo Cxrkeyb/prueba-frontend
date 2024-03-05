@@ -46,7 +46,7 @@ const EnterpriseIdView = () => {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
-      .put(`https://immortal-longhorn-trusty.ngrok-free.appenterprises/v1/${id}`, data, {
+      .put(`https://immortal-longhorn-trusty.ngrok-free.app/enterprises/v1/${id}`, data, {
         headers: { 
           "ngrok-skip-browser-warning": "69420",
         }
@@ -70,7 +70,7 @@ const EnterpriseIdView = () => {
 
   const deleteEnterprise = () => {
     axios
-      .delete(`https://immortal-longhorn-trusty.ngrok-free.appenterprises/v1/${id}`, {
+      .delete(`https://immortal-longhorn-trusty.ngrok-free.app/enterprises/v1/${id}`, {
         headers: { 
           "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
@@ -86,7 +86,7 @@ const EnterpriseIdView = () => {
 
   useEffect(() => {
     axios
-      .get(`https://immortal-longhorn-trusty.ngrok-free.appenterprises/v1/${id}`, {
+      .get(`https://immortal-longhorn-trusty.ngrok-free.app/enterprises/v1/${id}`, {
         headers: { 
           "ngrok-skip-browser-warning": "69420",
         }

@@ -38,7 +38,7 @@ const CreateEnterpriseView = () => {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
-      .post("https://immortal-longhorn-trusty.ngrok-free.appenterprises/v1/", data, {
+      .post("https://immortal-longhorn-trusty.ngrok-free.app/enterprises/v1/", data, {
         headers: {
           "ngrok-skip-browser-warning": "69420",
         },
