@@ -41,8 +41,11 @@ const EnterpriseIdView = () => {
     nit: z.string().min(6).max(100),
     name: z.string().min(6).max(100),
     address: z.string().min(6).max(100),
-    phoneNumber: z.string().min(6).max(100),
+    phone_number: z.string().min(6).max(100),
     country: z.string().min(6).max(100),
+    products: z.array(
+      z.number()
+    ).optional()
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -50,14 +53,15 @@ const EnterpriseIdView = () => {
   });
 
   function onSubmit(data: z.infer<typeof formSchema>) {
+    data.products = []
     axios
       .put(`https://flummy.dev/api/enterprise/${id}/`, data, {
         headers: {
-          "ngrok-skip-browser-warning": "69420",
+          "Authorization": "Token " + user?.token,
         },
       })
       .then((response) => {
-        router.push(`/enterprise/${data.nit}`);
+        router.push(`/enterprise/${id}`);
       })
       .catch((error) => {
         console.error(error);
@@ -92,7 +96,7 @@ const EnterpriseIdView = () => {
 
   useEffect(() => {
     axios
-      .get(`https://flummy.dev/api/enterprise/search/?nit=${id}`, {
+      .get(`https://flummy.dev/api/enterprise/search/?id=${id}`, {
         headers: {
           "Authorization": "Token " + user?.token,
         },
@@ -174,7 +178,7 @@ const EnterpriseIdView = () => {
 
             <FormField
               control={form.control}
-              name="phoneNumber"
+              name="phone_number"
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormLabel className="">

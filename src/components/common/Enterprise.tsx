@@ -9,6 +9,7 @@ export interface Enterprise {
   name: string; // name de la empresa
   address: string; // Dirección
   phoneNumber: string; // Teléfono
+  id: string; 
 }
 
 interface EnterpriseProps{
@@ -36,7 +37,7 @@ const EnterpriseComponent: React.FC<EnterpriseProps> = ({ enterprise, index }) =
   </div>
   <Button
     onClick={() => {
-      router.push(`/enterprise/${enterprise.nit}`);
+      router.push(`/enterprise/${enterprise.id}`);
     }}
     className="text-lg bg-yellow-400 hover:bg-yellow-500"
   >
