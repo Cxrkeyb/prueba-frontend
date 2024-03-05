@@ -74,7 +74,7 @@ const ProductsView = () => {
     console.log("onSubmit", data);
     axios
       .put(
-        `http://18.234.124.123:8000/api/products/v1/${id}`,
+        `http://18.234.124.123:8000/api/product/${id}/`,
         data,
         {
           headers: {
@@ -109,7 +109,7 @@ const ProductsView = () => {
   const deleteProduct = () => {
     axios
       .delete(
-        `http://18.234.124.123:8000/api/products/v1/${id}`,
+        `http://18.234.124.123:8000/api/product/${id}/`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",

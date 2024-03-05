@@ -50,7 +50,7 @@ const EnterpriseIdView = () => {
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
       .put(
-        `http://18.234.124.123:8000/api/enterprises/v1/${id}`,
+        `http://18.234.124.123:8000/api/enterprise/${id}/`,
         data,
         {
           headers: {
@@ -78,7 +78,7 @@ const EnterpriseIdView = () => {
   const deleteEnterprise = () => {
     axios
       .delete(
-        `http://18.234.124.123:8000/api/enterprises/v1/${id}`,
+        `http://18.234.124.123:8000/api/enterprise/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -97,7 +97,7 @@ const EnterpriseIdView = () => {
   useEffect(() => {
     axios
       .get(
-        `http://18.234.124.123:8000/api/enterprises/v1/${id}`,
+        `http://18.234.124.123:8000/api/enterprise/search/?nit=${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",

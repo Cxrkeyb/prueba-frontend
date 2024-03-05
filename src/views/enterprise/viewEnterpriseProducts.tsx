@@ -22,7 +22,7 @@ const ViewEnterpriseProducts = () => {
   useEffect(() => {
     axios
       .get(
-        `http://18.234.124.123:8000/api/products/v1/enterprise/${id}`,
+        `http://18.234.124.123:8000/api/product/enterprise-products/?id=${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",

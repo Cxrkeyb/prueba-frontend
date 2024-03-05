@@ -42,6 +42,8 @@ const Head = ({
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content={`@${user}`} />
       <meta name="twitter:creator" content={`@${user}`} />
+      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> 
+
     </HeadComponent>
   );
 };

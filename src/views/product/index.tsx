@@ -78,7 +78,7 @@ const ProductsView = () => {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
-      .post("http://18.234.124.123:8000/api/products/v1", {
+      .post("http://18.234.124.123:8000/api/product/", {
         code: data.code,
         name: data.name,
         features: data.features,
@@ -104,7 +104,7 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get("http://18.234.124.123:8000/api/category/")
+      .get("http://18.234.124.123:8000/api/category/list_categories/")
       .then((response) => {
         setCategories(response.data);
       })
