@@ -46,7 +46,11 @@ const EnterpriseIdView = () => {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
-      .put(`https://3c4f-181-78-80-164.ngrok-free.app/enterprises/v1/${id}`, data)
+      .put(`https://3c4f-181-78-80-164.ngrok-free.app/enterprises/v1/${id}`, data, {
+        headers: { 
+          "ngrok-skip-browser-warning": "69420",
+        }
+      })
       .then((response) => {
         router.push(`/enterprise/${data.nit}`);
       })

@@ -17,11 +17,6 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import userStore from "@/store/userStore";
 
-class Currency {
-  code: string;
-  price: number;
-}
-
 const ProductsView = () => {
   const { t } = useTranslation(["common", "form"]);
   const [isEditing, setIsEditing] = React.useState(false);
@@ -29,7 +24,11 @@ const ProductsView = () => {
     productCode: "123456789",
     name: "Producto 1",
     company: "Empresa 1",
-    currencies: [],
+    currencies: {
+      USD: 50,
+      EUR: 100,
+      GBP: 200,
+    },
     productProperties: "Caracteristica",
   });
 
@@ -96,7 +95,7 @@ const ProductsView = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [id]);
 
   if (isEditing) {
     return (
@@ -125,7 +124,6 @@ const ProductsView = () => {
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="productName"
@@ -147,7 +145,6 @@ const ProductsView = () => {
                 )}
               />
             </div>
-
             <FormField
               control={form.control}
               name="characteristics"
@@ -168,7 +165,6 @@ const ProductsView = () => {
                 </FormItem>
               )}
             />
-
             <div className="flex w-full flex-col gap-2">
               <FormField
                 control={form.control}
@@ -188,7 +184,6 @@ const ProductsView = () => {
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="currencies.EUR"
@@ -207,7 +202,6 @@ const ProductsView = () => {
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="currencies.GBP"
@@ -216,6 +210,7 @@ const ProductsView = () => {
                     <FormLabel className="">
                       {t("form:questions.prices.titleGBP")}
                     </FormLabel>
+
                     <FormControl>
                       <Input
                         placeholder={t("form:questions.prices.placeholderGBP")}
@@ -227,7 +222,6 @@ const ProductsView = () => {
                 )}
               />
             </div>
-
             <Button className="bg-blue-500 w-full" type="submit">
               {t("common:submit")}
             </Button>
@@ -252,11 +246,15 @@ const ProductsView = () => {
             {t("form:questions.characteristics.placeholder")}:{" "}
             {product?.productProperties}
           </p>
-          {product.currencies.map((currency: Currency, index) => (
-            <p className="text-gray-600 mb-2" key={index}>
-              {currency.code}:{currency.price}
-            </p>
-          ))}
+          <p className="text-gray-600 mb-2">
+            {t("form:questions.prices.titleUSD")}: {product?.currencies.USD}
+          </p>
+          <p className="text-gray-600 mb-2">
+            {t("form:questions.prices.titleEUR")}: {product?.currencies.EUR}
+          </p>
+          <p className="text-gray-600 mb-2">
+            {t("form:questions.prices.titleGBP")}: {product?.currencies.GBP}
+          </p>
           <div className="flex gap-8">
             {user?.role === "admin" && (
               <>
