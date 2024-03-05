@@ -20,7 +20,7 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get("https://immortal-longhorn-trusty.ngrok-free.app/products/v1/products", {
+      .get("http://18.234.124.123:8000/api/products/v1/products", {
         headers: { 
           "ngrok-skip-browser-warning": "69420",
         }

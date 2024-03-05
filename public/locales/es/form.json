@@ -23,13 +23,14 @@
       "codeError": "Error en las características del producto"
     },
     "prices": {
-      "titleUSD": "Precio en USD",
-      "titleEUR": "Precio en EUR",
-      "titleGBP": "Precio en GBP",
-      "placeholderUSD": "Precio en USD",
-      "placeholderEUR": "Precio en EUR",
-      "placeholderGBP": "Precio en GBP",
-      "codeError": "Error en el precio del producto"
+      "title": "Precio del Producto",
+      "placeholder": "Precio",
+      "codeError": "Error en los precios del producto"
+    },
+    "currency": {
+      "title": "Moneda",
+      "placeholder": "Moneda",
+      "codeError": "Error en la moneda"
     },
     "company": {
       "title": "Nombre de la Empresa",
@@ -65,6 +66,19 @@
       "title": "Contraseña",
       "placeholder": "Contraseña",
       "codeError": "Error en la contraseña"
+    },
+    "category": {
+      "title": "Categorias",
+      "select": "Seleccionar Categorias",
+      "placeholder": "Dale click para seleccionar categorías",
+      "codeError": "Error en la categoría",
+      "options": {
+        "1": "Categoría 1",
+        "2": "Categoría 2",
+        "3": "Categoría 3",
+        "4": "Categoría 4",
+        "5": "Categoría 5"
+      }
     },
     "delete": "Eliminar",
     "edit": "Editar"

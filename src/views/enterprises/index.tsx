@@ -23,7 +23,7 @@ const EnterprisesView = () => {
     const fetchEnterprises = async () => {
       try {
         const response = await axios.get(
-          "https://immortal-longhorn-trusty.ngrok-free.app/enterprises/v1/",
+          "http://18.234.124.123:8000/api/enterprises/v1/",
           {
             headers: {
               "ngrok-skip-browser-warning": "69420",

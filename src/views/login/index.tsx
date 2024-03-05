@@ -39,7 +39,7 @@ const LoginView = () => {
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
       .post(
-        "https://immortal-longhorn-trusty.ngrok-free.app/users/v1/login",
+        "http://18.234.124.123:8000/api/users/v1/login",
         {
           email: data.email,
           password: data.password,
