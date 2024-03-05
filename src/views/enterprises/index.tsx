@@ -14,6 +14,7 @@ const EnterprisesView = () => {
   const [enterprises, setEnterprises] = useState<Enterprise[]>([]);
   const router = useRouter();
   const { user } = userStore();
+  console.log(user);
 
   const goToCreateEnterprise = () => {
     router.push("/enterprise/");
@@ -23,10 +24,9 @@ const EnterprisesView = () => {
     const fetchEnterprises = async () => {
       try {
         const response = await axios.get(
-          "https://flummy.dev/api/enterprise/list_enterprises/",
-          {
+          "https://flummy.dev/api/enterprise/list_enterprises/", {
             headers: {
-              "ngrok-skip-browser-warning": "69420",
+              "Authorization": "Token " + user?.token,
             },
           }
         );
@@ -50,7 +50,7 @@ const EnterprisesView = () => {
           />
         ))}
       </div>
-      {user?.role === "admin" && (
+      {user?.type === 1 && (
         <Button onClick={goToCreateEnterprise}>
           {t("form:createCompany")}
         </Button>

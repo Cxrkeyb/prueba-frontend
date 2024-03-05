@@ -19,6 +19,7 @@ import { useTranslation } from "next-i18next";
 import { FormLabel } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/router";
+import userStore from "@/store/userStore";
 
 const formSchema = z.object({
   nit: z.string().min(6).max(100),
@@ -32,6 +33,8 @@ const CreateEnterpriseView = () => {
 
   const router = useRouter();
 
+  const { user } = userStore();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
@@ -40,7 +43,7 @@ const CreateEnterpriseView = () => {
     axios
       .post("https://flummy.dev/api/enterprise/", data, {
         headers: {
-          "ngrok-skip-browser-warning": "69420",
+          Authorization: "Token " + user?.token,
         },
       })
       .then((response) => {
@@ -136,7 +139,9 @@ const CreateEnterpriseView = () => {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={t("form:questions.phoneNumber.placeholder")}
+                        placeholder={t(
+                          "form:questions.phoneNumber.placeholder"
+                        )}
                         {...field}
                       />
                     </FormControl>

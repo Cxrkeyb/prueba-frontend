@@ -245,7 +245,7 @@ const EnterpriseIdView = () => {
           </div>
 
           <div className="flex flex-col gap-2">
-            {user?.role === "admin" && (
+            {user?.type === 2 && (
               <>
                 <motion.div
                   initial={{ scale: 0 }}

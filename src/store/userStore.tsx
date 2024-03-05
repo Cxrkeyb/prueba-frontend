@@ -4,7 +4,7 @@ type User = {
   email: string;
   token: string;
   name: string;
-  role: string;
+  type: number;
 };
 
 type Store = {

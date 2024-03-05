@@ -104,7 +104,7 @@ const ProductsView = () => {
   const { id } = router.query;
 
   const user = userStore((state) => state.user);
-  const userRole = user?.role;
+  const userRole = user?.type;
 
   const deleteProduct = () => {
     axios
@@ -135,12 +135,7 @@ const ProductsView = () => {
   useEffect(() => {
     axios
       .get(
-        `https://flummy.dev/api/product/enterprise-products/?id=${id}`,
-        {
-          headers: {
-            "ngrok-skip-browser-warning": "69420",
-          },
-        }
+        `https://flummy.dev/api/product/enterprise-products/?id=${id}`
       )
       .then((response) => {
         console.log(response.data);
@@ -463,7 +458,7 @@ const ProductsView = () => {
               <p className="text-black font-light">{product?.currencies.GBP}</p>
             </div>
           </div>
-          {userRole === "admin" && (
+          {userRole === 1 && (
             <div className="flex flex-col md:flex-row gap-4 mt-4 w-full">
               <motion.div
                 initial={{ scale: 0 }}

@@ -51,7 +51,7 @@ const ViewEnterpriseProducts = () => {
           </p>
         )}
       </div>
-      {user && user.role === "admin" && (
+      {user && user.type === 2 && (
         <Button onClick={goToCreateProduct}>{t("createProduct")}</Button>
       )}
     </div>

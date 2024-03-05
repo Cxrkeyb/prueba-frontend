@@ -43,20 +43,15 @@ const LoginView = () => {
         {
           email: data.email,
           password: data.password,
-        },
-        // {
-        //   headers: {
-        //     "ngrok-skip-browser-warning": "69420",
-        //   },
-        // }
+        }
       )
       .then((response) => {
         Swal.fire("Inicio de sesión exitoso", "Bienvenido", "success");
         setUser({
-          email: response.data.data.user.email,
-          token: response.data.data.jwt,
-          name: response.data.data.user.name,
-          role: response.data.data.user.role,
+          name: response.data.user.first_name,
+          email: response.data.user.email,
+          type: response.data.user.type,
+          token: response.data.token
         });
       })
       .catch((error) => {

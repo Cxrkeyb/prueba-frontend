@@ -20,11 +20,7 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get("https://flummy.dev/api/product/", {
-        headers: { 
-          "ngrok-skip-browser-warning": "69420",
-        }
-      })
+      .get("https://flummy.dev/api/product/")
       .then((response) => {
         console.log(response);
         // if (response.data) setProducts(response.data);
@@ -42,7 +38,7 @@ const ProductsView = () => {
           <ProductComponent key={index} product={product} index={index} />
         ))}
       </div>
-      {user && user.role === "admin" && (
+      {user && user.type === 2 && (
         <Button onClick={goToCreateProduct}>{t("createProduct")}</Button>
       )}
     </div>
