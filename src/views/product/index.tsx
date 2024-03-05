@@ -15,11 +15,6 @@ import { useTranslation } from "next-i18next";
 import { FormLabel } from "@mui/material";
 import axios from "axios";
 
-class Currency {
-  code: string;
-  price: number;
-}
-
 const ProductsView = () => {
   const { t } = useTranslation(["common", "form"]);
 
@@ -29,12 +24,11 @@ const ProductsView = () => {
       .string()
       .min(1, { message: t("form:questions.productName.codeError") }),
     features: z.string().optional(),
-    prices: z.array(
-      z.object({
-        code: z.string(),
-        price: z.number().positive(),
-      })
-    ),
+    prices: z.object({
+      USD: z.number().positive(),
+      EUR: z.number().positive(),
+      GBP: z.number().positive(),
+    }),
     nit: z.string(),
   });
 

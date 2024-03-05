@@ -19,9 +19,9 @@ const EnterprisesView = () => {
   useEffect(() => {
     axios
       .get("https://3c4f-181-78-80-164.ngrok-free.app/enterprises/v1/", {
-        headers: { 
+        headers: {
           "ngrok-skip-browser-warning": "69420",
-        }
+        },
       })
       .then((response) => {
         console.log(response);
@@ -37,23 +37,25 @@ const EnterprisesView = () => {
   console.log(enterprises);
 
   return (
-    <div className="flex flex-wrap justify-center">
-      {enterprises.map((enterprise, index) => (
-        <div key={index} className="m-4 p-4 bg-white rounded shadow-md w-80">
-          <div className="text-2xl font-bold mb-2">{enterprise.name}</div>
-          <div className="text-2xl font-bold mb-2">{enterprise.nit}</div>
-          <div className="text-lg mb-2">{enterprise.address}</div>
-          <div className="text-lg mb-4">{enterprise.phoneNumber}</div>
-          <Button
-            onClick={() => {
-              router.push(`/enterprise/${enterprise.nit}`);
-            }}
-            className="text-lg bg-blue-500 hover:bg-blue-600"
-          >
-            {t("common:viewEnterprise")}
-          </Button>
-        </div>
-      ))}
+    <div className="container mx-auto mt-8 flex flex-col gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {enterprises.map((enterprise, index) => (
+          <div key={index} className="m-4 p-4 bg-white rounded shadow-md w-80">
+            <div className="text-2xl font-bold mb-2">{enterprise.name}</div>
+            <div className="text-2xl font-bold mb-2">{enterprise.nit}</div>
+            <div className="text-lg mb-2">{enterprise.address}</div>
+            <div className="text-lg mb-4">{enterprise.phoneNumber}</div>
+            <Button
+              onClick={() => {
+                router.push(`/enterprise/${enterprise.nit}`);
+              }}
+              className="text-lg bg-blue-500 hover:bg-blue-600"
+            >
+              {t("common:viewEnterprise")}
+            </Button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

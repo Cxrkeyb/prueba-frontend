@@ -88,6 +88,25 @@ const ProductsView = () => {
 
   const user = userStore((state) => state.user);
 
+  const deleteProduct = () => {
+    axios
+      .delete(
+        `https://3c4f-181-78-80-164.ngrok-free.app/products/v1/${id}`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "69420",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        router.push("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   useEffect(() => {
     axios
       .get(
@@ -269,9 +288,7 @@ const ProductsView = () => {
             {user?.role === "admin" && (
               <>
                 <Button
-                  onClick={() => {
-                    console.log("Deleted");
-                  }}
+                  onClick={deleteProduct}
                   className="bg-red-500"
                 >
                   {t("form:questions.delete")}
