@@ -33,8 +33,10 @@ const ProductsView = () => {
   });
 
   const formSchema = z.object({
-    code: z.string().min(1, { message: t("form:questions.code.codeError") }),
-    productName: z
+    productCode: z
+      .string()
+      .min(1, { message: t("form:questions.code.codeError") }),
+    name: z
       .string()
       .min(1, { message: t("form:questions.productName.codeError") }),
     characteristics: z.string().optional(),
@@ -52,15 +54,23 @@ const ProductsView = () => {
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log("onSubmit", data);
-    // axios
-    //   .put(`https://3c4f-181-78-80-164.ngrok-free.app/products/v1/products/${product.id}`, data)
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
-    // ignore
+    axios
+      .put(
+        `https://3c4f-181-78-80-164.ngrok-free.app/products/v1/${id}`,
+        data,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "69420",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        router.push(`/product/${id}`);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     // @ts-ignore
     setProduct(data);
     toggleEditing();
@@ -108,7 +118,7 @@ const ProductsView = () => {
             <div className="flex flex-col lg:flex-row w-full gap-2">
               <FormField
                 control={form.control}
-                name="code"
+                name="productCode"
                 render={({ field }) => (
                   <FormItem className="w-full md:w-1/2">
                     <FormLabel className="">
@@ -126,7 +136,7 @@ const ProductsView = () => {
               />
               <FormField
                 control={form.control}
-                name="productName"
+                name="name"
                 render={({ field }) => (
                   <FormItem className="w-full md:w-1/2">
                     <FormLabel className="">
@@ -147,7 +157,7 @@ const ProductsView = () => {
             </div>
             <FormField
               control={form.control}
-              name="characteristics"
+              name="productProperties"
               render={({ field }) => (
                 <FormItem className="w-full">
                   <FormLabel className="">
