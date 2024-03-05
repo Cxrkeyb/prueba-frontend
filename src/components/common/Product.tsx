@@ -2,6 +2,8 @@ import { useTranslation } from "next-i18next";
 import React from "react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/router";
+import RandomImage from "./randomImage";
+
 interface Product {
   name: string;
   nit: string;
@@ -22,36 +24,56 @@ interface ProductProps {
 
 const ProductComponent: React.FC<ProductProps> = ({ product, index }) => {
   const { t } = useTranslation("form");
-
   const router = useRouter();
   const { id } = router.query;
 
   return (
-    <div key={index} className="bg-white shadow-md rounded-lg p-6">
-      <h2 className="text-xl font-bold mb-4">{product.name}</h2>
-      <p className="text-gray-600 mb-2">
-        {t("form:questions.nit.title")}: {id ? id : product.nit}
-      </p>
-      <p className="text-gray-600 mb-2">
-        {t("form:questions.code.title")}: {product.productCode}
-      </p>
-      <p className="text-gray-600 mb-2">
-        {t("form:questions.prices.titleUSD")}: {product?.currencies.USD}
-      </p>
-      <p className="text-gray-600 mb-2">
-        {t("form:questions.prices.titleEUR")}: {product?.currencies.EUR}
-      </p>
-      <p className="text-gray-600 mb-2">
-        {t("form:questions.prices.titleGBP")}: {product?.currencies.GBP}
-      </p>
-      <p className="text-gray-600 mb-2">
-        {t("form:questions.characteristics.title")}: {product.productProperties}
-      </p>
+    <div key={index} className="bg-white shadow-md rounded-lg p-6 border">
+      <h2 className="text-2xl font-semibold mb-4">{product.name}</h2>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="text-gray-800">
+          <p className="text-blue-500 font-bold">
+            {t("form:questions.nit.title")}:
+          </p>
+          <p>{id ? id : product.nit}</p>
+        </div>
+        <div className="text-gray-800">
+          <p className="text-blue-500 font-bold">
+            {t("form:questions.code.title")}:
+          </p>
+          <p>{product.productCode}</p>
+        </div>
+        <div className="text-gray-800">
+          <p className="text-blue-500 font-bold">
+            {t("form:questions.prices.titleUSD")}:
+          </p>
+          <p>{product?.currencies.USD}</p>
+        </div>
+        <div className="text-gray-800">
+          <p className="text-blue-500 font-bold">
+            {t("form:questions.prices.titleEUR")}:
+          </p>
+          <p>{product?.currencies.EUR}</p>
+        </div>
+        <div className="text-gray-800">
+          <p className="text-blue-500 font-bold">
+            {t("form:questions.prices.titleGBP")}:
+          </p>
+          <p>{product?.currencies.GBP}</p>
+        </div>
+        <div className="text-gray-800">
+          <p className="text-blue-500 font-bold">
+            {t("form:questions.characteristics.title")}:
+          </p>
+          <p>{product.productProperties}</p>
+        </div>
+      </div>
+      <RandomImage search={product.name} />
       <Button
         onClick={() => {
           router.push(`/product/${product.id}`);
         }}
-        className="bg-blue-500"
+        className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded inline-block w-full"
       >
         {t("form:viewProduct")}
       </Button>

@@ -78,3 +78,17 @@
 body{
   overflow-x: hidden;
 }
+
+/* Para WebKit (Chrome, Safari, etc.) */
+::-webkit-scrollbar {
+  width: 10px; /* Ancho de la barra de desplazamiento */
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color de fondo de la pista de la barra de desplazamiento */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; /* Color del indicador de la barra de desplazamiento */
+  border-radius: 5px; /* Radio de borde del indicador de la barra de desplazamiento */
+}

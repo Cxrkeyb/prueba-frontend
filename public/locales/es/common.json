@@ -20,5 +20,6 @@
   "pageNotFoundDescription": "La página que estás buscando no existe",
   "backToHome": "Volver a inicio",
   "error404": "Error 404",
-  "viewEnterprise": "Ver Empresa"
+  "viewEnterprise": "Ver Empresa",
+  "welcome": "Bienvenido,"
 }

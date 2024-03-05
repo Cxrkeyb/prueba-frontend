@@ -16,6 +16,8 @@ import { FormLabel } from "@mui/material";
 import { useRouter } from "next/router";
 import axios from "axios";
 import userStore from "@/store/userStore";
+import RandomImage from "@/components/common/randomImage";
+import { motion } from "framer-motion";
 
 const EnterpriseIdView = () => {
   const { t } = useTranslation(["common", "form"]);
@@ -46,11 +48,15 @@ const EnterpriseIdView = () => {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
-      .put(`https://immortal-longhorn-trusty.ngrok-free.app/enterprises/v1/${id}`, data, {
-        headers: { 
-          "ngrok-skip-browser-warning": "69420",
+      .put(
+        `https://immortal-longhorn-trusty.ngrok-free.app/enterprises/v1/${id}`,
+        data,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "69420",
+          },
         }
-      })
+      )
       .then((response) => {
         router.push(`/enterprise/${data.nit}`);
       })
@@ -70,12 +76,15 @@ const EnterpriseIdView = () => {
 
   const deleteEnterprise = () => {
     axios
-      .delete(`https://immortal-longhorn-trusty.ngrok-free.app/enterprises/v1/${id}`, {
-        headers: { 
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
+      .delete(
+        `https://immortal-longhorn-trusty.ngrok-free.app/enterprises/v1/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+          },
         }
-      })
+      )
       .then((response) => {
         router.push("/");
       })
@@ -86,11 +95,14 @@ const EnterpriseIdView = () => {
 
   useEffect(() => {
     axios
-      .get(`https://immortal-longhorn-trusty.ngrok-free.app/enterprises/v1/${id}`, {
-        headers: { 
-          "ngrok-skip-browser-warning": "69420",
+      .get(
+        `https://immortal-longhorn-trusty.ngrok-free.app/enterprises/v1/${id}`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "69420",
+          },
         }
-      })
+      )
       .then((response) => {
         if (response.data) setEnterprise(response.data);
         if (!response.data) router.push("/");
@@ -197,45 +209,91 @@ const EnterpriseIdView = () => {
   }
 
   return (
-    <div className="container mx-auto mt-8 mb-[200px]">
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <div>
-          <h2 className="text-xl font-bold mb-4">{enterprise?.name}</h2>
-          <p className="text-gray-600 mb-2">
-            {t("form:questions.company.placeholder")}: {enterprise?.name}
-          </p>
-          <p className="text-gray-600 mb-2">
-            {t("form:questions.nit.placeholder")}: {enterprise?.nit}
-          </p>
-          <p className="text-gray-600 mb-2">
-            {t("form:questions.address.placeholder")}: {enterprise?.address}
-          </p>
-          <p className="text-gray-600 mb-2">
-            {t("form:questions.phoneNumber.placeholder")}:{" "}
-            {enterprise?.phoneNumber}
-          </p>
-          <div className="flex gap-8">
+    <div className="container mx-auto mt-8">
+      <div className="bg-gray-100 shadow-xl border rounded-lg p-6 flex flex-col md:flex-row md:gap-6 items-center">
+        <div className="flex flex-col mb-4 md:mb-0 md:w-1/2">
+          <h2 className="text-xl font-bold mb-2">{enterprise?.name}</h2>
+          <div className="flex flex-col md:gap-6">
+            <div className="mb-4 md:w-1/2">
+              <p className="text-blue-500 font-bold">
+                {t("form:questions.company.placeholder")}:
+              </p>
+              <p className="text-gray-800 font-light">{enterprise?.name}</p>
+            </div>
+            <div className="mb-4 md:w-1/2">
+              <p className="text-blue-500 font-bold">
+                {t("form:questions.nit.placeholder")}:
+              </p>
+              <p className="text-gray-800 font-light">{enterprise?.nit}</p>
+            </div>
+            <div className="mb-4 md:w-1/2">
+              <p className="text-blue-500 font-bold">
+                {t("form:questions.address.placeholder")}:
+              </p>
+              <p className="text-gray-800 font-light">{enterprise?.address}</p>
+            </div>
+            <div className="mb-4 md:w-1/2">
+              <p className="text-blue-500 font-bold">
+                {t("form:questions.phoneNumber.placeholder")}:
+              </p>
+              <p className="text-gray-800 font-light">
+                {enterprise?.phoneNumber}
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2">
             {user?.role === "admin" && (
               <>
-                <Button onClick={deleteEnterprise} className="bg-red-500">
-                  {t("form:questions.delete")}
-                </Button>
-                <Button onClick={toggleEditing}>
-                  {t("form:questions.edit")}
-                </Button>
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full"
+                >
+                  <Button
+                    onClick={deleteEnterprise}
+                    className="mt-4 md:mt-0 bg-red-500 w-full"
+                  >
+                    {t("form:questions.delete")}
+                  </Button>
+                </motion.div>
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="w-full"
+                >
+                  <Button
+                    onClick={toggleEditing}
+                    className="
+                mt-4 md:mt-0 bg-yellow-500 w-full
+                "
+                  >
+                    {t("form:questions.edit")}
+                  </Button>
+                </motion.div>
               </>
             )}
-            <Button
-              onClick={() => {
-                router.push(`/enterprise/${enterprise?.nit}/products`);
-              }}
-              className="
-            bg-blue-500
-            "
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="w-full"
             >
-              {t("form:viewProducts")}
-            </Button>
+              <Button
+                onClick={() => {
+                  router.push(`/enterprise/${enterprise?.nit}/products`);
+                }}
+                className="mt-4 md:mt-0 bg-blue-500 w-full"
+              >
+                {t("form:viewProducts")}
+              </Button>
+            </motion.div>
           </div>
+        </div>
+        <div className="w-full md:w-1/2">
+          <RandomImage search={enterprise?.name} />
         </div>
       </div>
     </div>

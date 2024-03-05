@@ -17,6 +17,8 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import userStore from "@/store/userStore";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import RandomImage from "@/components/common/randomImage";
 
 const LoginView = () => {
   const { t } = useTranslation(["common", "form", "constants"]);
@@ -43,9 +45,9 @@ const LoginView = () => {
           password: data.password,
         },
         {
-          headers: { 
+          headers: {
             "ngrok-skip-browser-warning": "69420",
-          }
+          },
         }
       )
       .then((response) => {
@@ -65,21 +67,23 @@ const LoginView = () => {
 
   if (user) {
     return (
-      <div className="bg-gray-100 rounded-md shadow-md p-6 max-w-md mx-auto mt-8 mb-[300px] justify-center items-center flex flex-col gap-8">
-        <h1 className="text-2xl font-bold text-gray-800 mb-4">
-          ¡Bienvenido, {user.name}!
+      <div className="bg-gray-100 border rounded-md shadow-md p-6 max-w-lg mx-auto mt-8 mb-[200px] justify-center items-center flex flex-col gap-8">
+        <h1 className="text-2xl font-bold mb-4 flex gap-2 ">
+          <span className="text-blue-500">{t("common:welcome")}</span>
+          <span className="text-gray-800">{user.name}</span>!
         </h1>
         <h2 className="text-lg text-gray-600">Email: {user.email}</h2>
-        <Button
-          className="
-        bg-blue-500
-        "
-          onClick={() => {
-            router.push("/enterprises");
-          }}
-        >
-          {t("viewEnterprises")}
-        </Button>
+        <RandomImage search="welcome" />
+        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+          <Button
+            onClick={() => {
+              router.push("/enterprises");
+            }}
+            className="bg-green-500 hover:bg-green-600 text-lg sm:text-xl p-4 sm:p-6 lg:p-8 flex space-x-1 ml-4"
+          >
+            <span>{t("viewEnterprises")}</span>
+          </Button>
+        </motion.div>
       </div>
     );
   }

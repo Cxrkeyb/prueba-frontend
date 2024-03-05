@@ -16,6 +16,8 @@ import { FormLabel } from "@mui/material";
 import axios from "axios";
 import { useRouter } from "next/router";
 import userStore from "@/store/userStore";
+import { motion } from 'framer-motion';
+import RandomImage from "@/components/common/randomImage";
 
 const ProductsView = () => {
   const { t } = useTranslation(["common", "form"]);
@@ -86,6 +88,7 @@ const ProductsView = () => {
   const { id } = router.query;
 
   const user = userStore((state) => state.user);
+  const userRole = user?.role;
 
   const deleteProduct = () => {
     axios
@@ -250,7 +253,7 @@ const ProductsView = () => {
               />
             </div>
             <Button className="bg-blue-500 w-full" type="submit">
-              {t("common:submit")}
+              {t("form:edit")}
             </Button>
           </form>
         </Form>
@@ -262,41 +265,75 @@ const ProductsView = () => {
   }
 
   return (
-    <div className="container mx-auto mt-8 mb-[200px]">
-      <div className="bg-white shadow-md rounded-lg p-6">
-        <div>
-          <h2 className="text-xl font-bold mb-4">{product?.name}</h2>
-          <p className="text-gray-600 mb-2">
-            {t("form:questions.code.placeholder")}: {product?.productCode}
+    <div className="container mx-auto mt-8 mb-8">
+      <div className="bg-gray-100 border shadow-xl rounded-lg p-6 flex flex-col md:flex-row gap-4 items-center">
+        <div className="md:w-1/2 flex flex-col gap-2 justify-center">
+          <h2 className="text-2xl text-blue-700 font-bold mb-4">{product?.name}</h2>
+          <p className="text-blue-500 font-bold mb-2">
+            {t("form:questions.code.placeholder")}:{" "}
+            <span className="text-gray-800 font-light">
+              {product?.productCode}
+            </span>
           </p>
-          <p className="text-gray-600 mb-2">
+          <p className="text-blue-500 font-bold mb-2">
             {t("form:questions.characteristics.placeholder")}:{" "}
-            {product?.productProperties}
+            <span className="text-gray-800 font-light">
+              {product?.productProperties}
+            </span>
           </p>
-          <p className="text-gray-600 mb-2">
-            {t("form:questions.prices.titleUSD")}: {product?.currencies.USD}
-          </p>
-          <p className="text-gray-600 mb-2">
-            {t("form:questions.prices.titleEUR")}: {product?.currencies.EUR}
-          </p>
-          <p className="text-gray-600 mb-2">
-            {t("form:questions.prices.titleGBP")}: {product?.currencies.GBP}
-          </p>
-          <div className="flex gap-8">
-            {user?.role === "admin" && (
-              <>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="text-blue-500 font-bold">
+              <p>{t("form:questions.prices.titleUSD")}:</p>
+              <p className="text-gray-800 font-light">
+                {product?.currencies.USD}
+              </p>
+            </div>
+            <div className="text-blue-500 font-bold">
+              <p>{t("form:questions.prices.titleEUR")}:</p>
+              <p className="text-gray-800 font-light">
+                {product?.currencies.EUR}
+              </p>
+            </div>
+            <div className="text-blue-500 font-bold">
+              <p>{t("form:questions.prices.titleGBP")}:</p>
+              <p className="text-gray-800 font-light">
+                {product?.currencies.GBP}
+              </p>
+            </div>
+          </div>
+          {userRole === "admin" && (
+            <div className="flex flex-col md:flex-row gap-4 mt-4 w-full">
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="w-full"
+              >
                 <Button
                   onClick={deleteProduct}
-                  className="bg-red-500"
+                  className="bg-red-500 w-full"
                 >
                   {t("form:questions.delete")}
                 </Button>
-                <Button onClick={toggleEditing}>
+              </motion.div>
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5 }}
+                className="w-full"
+              >
+                <Button
+                  onClick={toggleEditing}
+                  className="bg-yellow-500 w-full"
+                >
                   {t("form:questions.edit")}
                 </Button>
-              </>
-            )}
-          </div>
+              </motion.div>
+            </div>
+          )}
+        </div>
+        <div className="md:w-1/2">
+          <RandomImage search={product.name} />
         </div>
       </div>
     </div>
