@@ -214,33 +214,33 @@ const EnterpriseIdView = () => {
       <div className="bg-gray-100 shadow-xl border rounded-lg p-6 flex flex-col md:flex-row md:gap-6 items-center relative">
         <GoBackButton />
         <div className="flex flex-col mb-4 md:mb-0 md:w-1/2 mt-[50px]">
-          <h2 className="text-xl font-bold mb-2 text-blue-800">{enterprise?.name}</h2>
+          <h2 className="text-xl font-bold mb-2 text-black">
+            {enterprise?.name}
+          </h2>
           <div className="flex flex-col md:gap-6">
             <div className="mb-4 md:w-1/2">
-              <p className="text-blue-500 font-bold">
+              <p className="text-yellow-500 font-bold">
                 {t("form:questions.company.placeholder")}:
               </p>
-              <p className="text-gray-800 font-light">{enterprise?.name}</p>
+              <p className="text-black font-light">{enterprise?.name}</p>
             </div>
             <div className="mb-4 md:w-1/2">
-              <p className="text-blue-500 font-bold">
+              <p className="text-yellow-500 font-bold">
                 {t("form:questions.nit.placeholder")}:
               </p>
-              <p className="text-gray-800 font-light">{enterprise?.nit}</p>
+              <p className="text-black font-light">{enterprise?.nit}</p>
             </div>
             <div className="mb-4 md:w-1/2">
-              <p className="text-blue-500 font-bold">
+              <p className="text-yellow-500 font-bold">
                 {t("form:questions.address.placeholder")}:
               </p>
-              <p className="text-gray-800 font-light">{enterprise?.address}</p>
+              <p className="text-black font-light">{enterprise?.address}</p>
             </div>
             <div className="mb-4 md:w-1/2">
-              <p className="text-blue-500 font-bold">
+              <p className="text-yellow-500 font-bold">
                 {t("form:questions.phoneNumber.placeholder")}:
               </p>
-              <p className="text-gray-800 font-light">
-                {enterprise?.phoneNumber}
-              </p>
+              <p className="text-black font-light">{enterprise?.phoneNumber}</p>
             </div>
           </div>
 
@@ -268,9 +268,7 @@ const EnterpriseIdView = () => {
                 >
                   <Button
                     onClick={toggleEditing}
-                    className="
-                mt-4 md:mt-0 bg-yellow-500 w-full
-                "
+                    className="mt-4 md:mt-0 bg-yellow-500 w-full"
                   >
                     {t("form:questions.edit")}
                   </Button>
@@ -287,7 +285,7 @@ const EnterpriseIdView = () => {
                 onClick={() => {
                   router.push(`/enterprise/${enterprise?.nit}/products`);
                 }}
-                className="mt-4 md:mt-0 bg-blue-500 w-full"
+                className="mt-4 md:mt-0 bg-black text-white w-full"
               >
                 {t("form:viewProducts")}
               </Button>

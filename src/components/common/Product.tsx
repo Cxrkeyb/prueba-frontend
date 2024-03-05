@@ -32,37 +32,37 @@ const ProductComponent: React.FC<ProductProps> = ({ product, index }) => {
       <h2 className="text-2xl font-semibold mb-4">{product.name}</h2>
       <div className="grid grid-cols-2 gap-4">
         <div className="text-gray-800">
-          <p className="text-blue-500 font-bold">
+          <p className="text-yellow-500 font-bold">
             {t("form:questions.nit.title")}:
           </p>
           <p>{id ? id : product.nit}</p>
         </div>
         <div className="text-gray-800">
-          <p className="text-blue-500 font-bold">
+          <p className="text-yellow-500 font-bold">
             {t("form:questions.code.title")}:
           </p>
           <p>{product.productCode}</p>
         </div>
         <div className="text-gray-800">
-          <p className="text-blue-500 font-bold">
+          <p className="text-yellow-500 font-bold">
             {t("form:questions.prices.titleUSD")}:
           </p>
           <p>{product?.currencies.USD}</p>
         </div>
         <div className="text-gray-800">
-          <p className="text-blue-500 font-bold">
+          <p className="text-yellow-500 font-bold">
             {t("form:questions.prices.titleEUR")}:
           </p>
           <p>{product?.currencies.EUR}</p>
         </div>
         <div className="text-gray-800">
-          <p className="text-blue-500 font-bold">
+          <p className="text-yellow-500 font-bold">
             {t("form:questions.prices.titleGBP")}:
           </p>
           <p>{product?.currencies.GBP}</p>
         </div>
         <div className="text-gray-800">
-          <p className="text-blue-500 font-bold">
+          <p className="text-yellow-500 font-bold">
             {t("form:questions.characteristics.title")}:
           </p>
           <p>{product.productProperties}</p>
@@ -73,7 +73,7 @@ const ProductComponent: React.FC<ProductProps> = ({ product, index }) => {
         onClick={() => {
           router.push(`/product/${product.id}`);
         }}
-        className="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded inline-block w-full"
+        className="mt-4 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded inline-block w-full"
       >
         {t("form:viewProduct")}
       </Button>

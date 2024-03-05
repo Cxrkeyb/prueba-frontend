@@ -1,6 +1,7 @@
 {
   "login": "Login",
-  "loginPrompt": "Welcome back! Please log in to continue.",
+  "loginPrompt1": "Welcome back!",
+  "loginPrompt2": "Please log in to continue.",
   "createProduct": "Create Product",
   "createProductPrompt": "Please enter product details",
   "createCompany": "Create Company",

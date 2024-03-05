@@ -69,7 +69,7 @@ const LoginView = () => {
     return (
       <div className="bg-gray-100 border rounded-md shadow-md p-6 max-w-lg mx-auto mt-8 mb-[200px] justify-center items-center flex flex-col gap-8">
         <h1 className="text-2xl font-bold mb-4 flex gap-2 ">
-          <span className="text-blue-500">{t("common:welcome")}</span>
+          <span className="text-yellow-500">{t("common:welcome")}</span>
           <span className="text-gray-800">{user.name}</span>!
         </h1>
         <h2 className="text-lg text-gray-600">Email: {user.email}</h2>
@@ -79,7 +79,7 @@ const LoginView = () => {
             onClick={() => {
               router.push("/enterprises");
             }}
-            className="bg-green-500 hover:bg-green-600 text-lg sm:text-xl p-4 sm:p-6 lg:p-8 flex space-x-1 ml-4"
+            className="bg-black hover:bg-gray-800 text-lg sm:text-xl p-4 sm:p-6 lg:p-8 flex space-x-1 ml-4"
           >
             <span>{t("viewEnterprises")}</span>
           </Button>
@@ -92,8 +92,11 @@ const LoginView = () => {
     <div className="flex items-center justify-center border rounded-xl bg-gray-100 my-8 max-w-[800px] self-center">
       <div className="flex flex-col items-center justify-center w-full max-w-screen-md px-4 py-8">
         <div className="flex flex-col space-y-4 text-center">
-          <span className="text-4xl font-bold">{t("form:login")}</span>
-          <span className="text-lg font-bold">{t("form:loginPrompt")}</span>
+          <span className="text-4xl font-bold ">{t("form:login")}</span>
+          <span className="text-lg font-bold  flex gap-2">
+            {t("form:loginPrompt1")}
+            <span className="text-black">{t("form:loginPrompt2")}</span>
+          </span>
         </div>
 
         <Form {...form}>
@@ -106,7 +109,7 @@ const LoginView = () => {
               name="email"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel>{t("form:questions.email.title")}</FormLabel>
+                  <FormLabel className="text-yellow-500 font-bold">{t("form:questions.email.title")}</FormLabel>
                   <FormControl className="w-full">
                     <Input
                       className="w-full"
@@ -123,7 +126,7 @@ const LoginView = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>{t("form:questions.password.title")}</FormLabel>
+                  <FormLabel className="text-yellow-500 font-bold">{t("form:questions.password.title")}</FormLabel>
                   <FormControl>
                     <Input
                       type="password"
@@ -136,7 +139,7 @@ const LoginView = () => {
               )}
             />
 
-            <Button className="w-full bg-blue-500" type="submit">
+            <Button className="w-full bg-black text-white" type="submit">
               {t("common:submit")}
             </Button>
           </form>

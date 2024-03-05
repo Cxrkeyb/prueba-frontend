@@ -13,7 +13,7 @@ function GoBackButton() {
         top-5 left-5"
       onClick={() => router.back()}
     >
-      <ArrowBigLeftIcon />
+      <ArrowBigLeftIcon className="text-white" />
     </Button>
   );
 }

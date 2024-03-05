@@ -24,63 +24,64 @@ function ActionsButtons() {
 
   return (
     <div>
-      <div className="lg:hidden">
-        <Sheet>
-          <SheetTrigger>
-            <AlignJustify />
-          </SheetTrigger>
-          <SheetContent>
-            <SheetHeader>
-              <SheetDescription>
-                <div className="flex flex-col space-y-4 items-start w-full text-lg text-black mt-10">
-                  {!user?.name && (
-                    <Button
-                      onClick={() => {
-                        router.push("/login");
-                      }}
-                      className="text-lg"
-                      variant="ghost"
-                    >
-                      {t("login")}
-                    </Button>
-                  )}
-                  <Button
-                    onClick={() => {
-                      router.push("/enterprises");
-                    }}
-                    className="text-lg bg-blue-500 hover:bg-blue-600"
-                  >
-                    {t("viewEnterprises")}
-                  </Button>
-                </div>
-              </SheetDescription>
-            </SheetHeader>
-          </SheetContent>
-        </Sheet>
-      </div>
+  <div className="lg:hidden">
+    <Sheet>
+      <SheetTrigger>
+        <AlignJustify />
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetDescription>
+            <div className="flex flex-col space-y-4 items-start w-full text-lg text-black mt-10">
+              {!user?.name && (
+                <Button
+                  onClick={() => {
+                    router.push("/login");
+                  }}
+                  className="text-lg text-yellow-600 underline"
+                  variant="ghost"
+                >
+                  {t("login")}
+                </Button>
+              )}
+              <Button
+                onClick={() => {
+                  router.push("/enterprises");
+                }}
+                className="text-lg bg-yellow-700 hover:bg-yellow-600"
+              >
+                {t("viewEnterprises")}
+              </Button>
+            </div>
+          </SheetDescription>
+        </SheetHeader>
+      </SheetContent>
+    </Sheet>
+  </div>
 
-      <div className="hidden lg:flex lg:space-x-4">
-        {!user?.name && (
-          <Button
-            onClick={() => {
-              router.push("/login");
-            }}
-            className="text-lg"
-            variant="ghost"
-          >
-            {t("login")}
-          </Button>
-        )}
-        <Button
-          onClick={() => {
-            router.push("/enterprises");
-          }}
-          className="text-lg bg-blue-500 hover:bg-blue-600"
-        >
-          {t("viewEnterprises")}
-        </Button>
-      </div>
-    </div>
+  <div className="hidden lg:flex lg:space-x-4">
+    {!user?.name && (
+      <Button
+        onClick={() => {
+          router.push("/login");
+        }}
+        className="text-lg text-yellow-500 underline"
+        variant="ghost"
+      >
+        {t("login")}
+      </Button>
+    )}
+    <Button
+      onClick={() => {
+        router.push("/enterprises");
+      }}
+      className="text-lg bg-black hover:bg-gray-700 text-white"
+    >
+      {t("viewEnterprises")}
+    </Button>
+  </div>
+</div>
+
   );
 }
 

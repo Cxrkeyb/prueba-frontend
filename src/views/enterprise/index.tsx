@@ -74,7 +74,7 @@ const CreateEnterpriseView = () => {
                 name="nit"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel className="">
+                    <FormLabel className="text-yellow-500 font-bold">
                       {t("form:questions.nit.title")}
                     </FormLabel>
                     <FormControl>
@@ -93,7 +93,7 @@ const CreateEnterpriseView = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel className="">
+                    <FormLabel className="text-yellow-500 font-bold">
                       {t("form:questions.name.title")}
                     </FormLabel>
                     <FormControl>
@@ -112,7 +112,7 @@ const CreateEnterpriseView = () => {
                 name="address"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel className="">
+                    <FormLabel className="text-yellow-500 font-bold">
                       {t("form:questions.address.title")}
                     </FormLabel>
                     <FormControl>
@@ -131,7 +131,7 @@ const CreateEnterpriseView = () => {
                 name="phoneNumber"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel className="">
+                    <FormLabel className="text-yellow-500 font-bold">
                       {t("form:questions.phoneNumber.title")}
                     </FormLabel>
                     <FormControl>
@@ -145,7 +145,7 @@ const CreateEnterpriseView = () => {
                 )}
               />
 
-              <Button className="bg-blue-500" type="submit">
+              <Button className="bg-black" type="submit">
                 {t("common:submit")}
               </Button>
             </form>

@@ -5,7 +5,7 @@ export default function Footer() {
   const { t } = useTranslation("common");
 
   return (
-    <footer className={`bg-blue-500 text-white py-8 px-4 sm:px-6 lg:px-8 w-full block`}>
+    <footer className={`bg-black text-yellow-500 py-8 px-4 sm:px-6 lg:px-8 w-full block`}>
       <div className="w-full">
         <div className="max-w-screen-xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -17,13 +17,13 @@ export default function Footer() {
             <div className="text-center md:text-right">
               <p className="text-lg font-bold">{t("followUs")}</p>
               <div className="flex justify-center md:justify-end space-x-4">
-                <a href="#" className="hover:text-primary/90">
+                <a href="#" className="hover:text-yellow-600">
                   {t("twitter")}
                 </a>
-                <a href="#" className="hover:text-primary/90">
+                <a href="#" className="hover:text-yellow-600">
                   {t("facebook")}
                 </a>
-                <a href="#" className="hover:text-primary/90">
+                <a href="#" className="hover:text-yellow-600">
                   {t("instagram")}
                 </a>
               </div>

@@ -1,6 +1,7 @@
 {
   "login": "Inicio de sesión",
-  "loginPrompt": "¡Bienvenido de nuevo! Por favor, inicia sesión para continuar.",
+  "loginPrompt1": "¡Bienvenido de nuevo!",
+  "loginPrompt2": "Por favor, inicia sesión para continuar.",
   "createProduct": "Crear Producto",
   "createProductPrompt": "Por favor, ingresa los detalles del producto",
   "createCompany": "Crear Empresa",

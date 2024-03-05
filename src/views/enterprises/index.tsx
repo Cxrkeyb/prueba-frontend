@@ -5,13 +5,9 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import userStore from "@/store/userStore";
 import RandomImage from "@/components/common/randomImage";
-
-interface Enterprise {
-  nit: string; // NIT (Llave primaria)
-  name: string; // name de la empresa
-  address: string; // Dirección
-  phoneNumber: string; // Teléfono
-}
+import EnterpriseComponent, {
+  Enterprise,
+} from "@/components/common/Enterprise";
 
 const EnterprisesView = () => {
   const { t } = useTranslation(["common", "form"]);
@@ -47,28 +43,11 @@ const EnterprisesView = () => {
     <div className="container mx-auto mt-8 flex flex-col gap-4 mb-[200px]">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {enterprises.map((enterprise, index) => (
-          <div
+          <EnterpriseComponent
             key={index}
-            className="m-4 p-4 bg-white rounded shadow-md w-full sm:w-80 flex flex-col gap-2 justify-center items-center"
-          >
-            <RandomImage search={enterprise.name} />
-            <div className="text-2xl font-bold mb-2 text-blue-500">
-              {enterprise.name}
-            </div>
-            <div className="text-lg text-center">
-              <div className="font-bold mb-2">{enterprise.nit}</div>
-              <div className="mb-2">{enterprise.address}</div>
-              <div className="mb-4">{enterprise.phoneNumber}</div>
-            </div>
-            <Button
-              onClick={() => {
-                router.push(`/enterprise/${enterprise.nit}`);
-              }}
-              className="text-lg bg-blue-500 hover:bg-blue-600"
-            >
-              {t("common:viewEnterprise")}
-            </Button>
-          </div>
+            enterprise={enterprise}
+            index={index}
+          />
         ))}
       </div>
       {user?.role === "admin" && (

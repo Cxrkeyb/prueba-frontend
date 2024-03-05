@@ -131,7 +131,7 @@ const ProductsView = () => {
 
   if (isEditing) {
     return (
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 bg-gray-100 p-4 shadow-xl rounded-xl border">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
@@ -143,7 +143,7 @@ const ProductsView = () => {
                 name="productCode"
                 render={({ field }) => (
                   <FormItem className="w-full md:w-1/2">
-                    <FormLabel className="">
+                    <FormLabel className="text-yellow-500 font-bold">
                       {t("form:questions.code.title")}
                     </FormLabel>
                     <FormControl>
@@ -161,7 +161,7 @@ const ProductsView = () => {
                 name="name"
                 render={({ field }) => (
                   <FormItem className="w-full md:w-1/2">
-                    <FormLabel className="">
+                    <FormLabel className="text-yellow-500 font-bold">
                       {t("form:questions.productName.title")}
                     </FormLabel>
                     <FormControl>
@@ -182,7 +182,7 @@ const ProductsView = () => {
               name="productProperties"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel className="">
+                  <FormLabel className="text-yellow-500 font-bold">
                     {t("form:questions.characteristics.title")}
                   </FormLabel>
                   <FormControl>
@@ -203,7 +203,7 @@ const ProductsView = () => {
                 name="currencies.USD"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel className="">
+                    <FormLabel className="text-yellow-500 font-bold">
                       {t("form:questions.prices.titleUSD")}
                     </FormLabel>
                     <FormControl>
@@ -221,7 +221,7 @@ const ProductsView = () => {
                 name="currencies.EUR"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel className="">
+                    <FormLabel className="text-yellow-500 font-bold">
                       {t("form:questions.prices.titleEUR")}
                     </FormLabel>
                     <FormControl>
@@ -239,7 +239,7 @@ const ProductsView = () => {
                 name="currencies.GBP"
                 render={({ field }) => (
                   <FormItem className="flex-1">
-                    <FormLabel className="">
+                    <FormLabel className="text-yellow-500 font-bold">
                       {t("form:questions.prices.titleGBP")}
                     </FormLabel>
 
@@ -254,12 +254,12 @@ const ProductsView = () => {
                 )}
               />
             </div>
-            <Button className="bg-blue-500 w-full" type="submit">
+            <Button className="bg-yellow-500 w-full text-black" type="submit">
               {t("form:edit")}
             </Button>
           </form>
         </Form>
-        <Button className="bg-red-500 w-full" onClick={toggleEditing}>
+        <Button className="bg-red-700 w-full" onClick={toggleEditing}>
           {t("form:cancel")}
         </Button>
       </div>
@@ -271,39 +271,33 @@ const ProductsView = () => {
       <div className="bg-gray-100 border shadow-xl rounded-lg p-6 flex flex-col md:flex-row gap-4 items-center relative">
         <GoBackButton />
         <div className="md:w-1/2 flex flex-col gap-2 justify-center mt-[50px]">
-          <h2 className="text-2xl text-blue-700 font-bold mb-4">
+          <h2 className="text-2xl text-black font-bold mb-4">
             {product?.name}
           </h2>
-          <p className="text-blue-500 font-bold mb-2">
+          <p className="text-yellow-500 font-bold mb-2">
             {t("form:questions.code.placeholder")}:{" "}
-            <span className="text-gray-800 font-light">
+            <span className="text-black font-light">
               {product?.productCode}
             </span>
           </p>
-          <p className="text-blue-500 font-bold mb-2">
+          <p className="text-yellow-500 font-bold mb-2">
             {t("form:questions.characteristics.placeholder")}:{" "}
-            <span className="text-gray-800 font-light">
+            <span className="text-black font-light">
               {product?.productProperties}
             </span>
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="text-blue-500 font-bold">
+            <div className="text-yellow-500 font-bold">
               <p>{t("form:questions.prices.titleUSD")}:</p>
-              <p className="text-gray-800 font-light">
-                {product?.currencies.USD}
-              </p>
+              <p className="text-black font-light">{product?.currencies.USD}</p>
             </div>
-            <div className="text-blue-500 font-bold">
+            <div className="text-yellow-500 font-bold">
               <p>{t("form:questions.prices.titleEUR")}:</p>
-              <p className="text-gray-800 font-light">
-                {product?.currencies.EUR}
-              </p>
+              <p className="text-black font-light">{product?.currencies.EUR}</p>
             </div>
-            <div className="text-blue-500 font-bold">
+            <div className="text-yellow-500 font-bold">
               <p>{t("form:questions.prices.titleGBP")}:</p>
-              <p className="text-gray-800 font-light">
-                {product?.currencies.GBP}
-              </p>
+              <p className="text-black font-light">{product?.currencies.GBP}</p>
             </div>
           </div>
           {userRole === "admin" && (
