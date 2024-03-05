@@ -37,7 +37,7 @@ const LoginView = () => {
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
       .post(
-        "https://3c4f-181-78-80-164.ngrok-free.app/users/v1/login",
+        "https://immortal-longhorn-trusty.ngrok-free.apusers/v1/login",
         {
           email: data.email,
           password: data.password,
@@ -50,7 +50,6 @@ const LoginView = () => {
       )
       .then((response) => {
         Swal.fire("Inicio de sesión exitoso", "Bienvenido", "success");
-        console.log(response);
         setUser({
           email: response.data.data.user.email,
           token: response.data.data.jwt,

@@ -56,7 +56,7 @@ const ProductsView = () => {
     console.log("onSubmit", data);
     axios
       .put(
-        `https://3c4f-181-78-80-164.ngrok-free.app/products/v1/${id}`,
+        `https://immortal-longhorn-trusty.ngrok-free.approducts/v1/${id}`,
         data,
         {
           headers: {
@@ -90,7 +90,7 @@ const ProductsView = () => {
   const deleteProduct = () => {
     axios
       .delete(
-        `https://3c4f-181-78-80-164.ngrok-free.app/products/v1/${id}`,
+        `https://immortal-longhorn-trusty.ngrok-free.approducts/v1/${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",
@@ -108,7 +108,7 @@ const ProductsView = () => {
   useEffect(() => {
     axios
       .get(
-        `https://3c4f-181-78-80-164.ngrok-free.app/products/v1/products/${id}`,
+        `https://immortal-longhorn-trusty.ngrok-free.approducts/v1/products/${id}`,
         {
           headers: {
             "ngrok-skip-browser-warning": "69420",

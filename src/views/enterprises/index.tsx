@@ -26,13 +26,12 @@ const EnterprisesView = () => {
 
   useEffect(() => {
     axios
-      .get("https://3c4f-181-78-80-164.ngrok-free.app/enterprises/v1/", {
+      .get("https://immortal-longhorn-trusty.ngrok-free.apenterprises/v1/", {
         headers: {
           "ngrok-skip-browser-warning": "69420",
         },
       })
       .then((response) => {
-        console.log(response);
         setEnterprises(response.data);
       })
       .catch((error) => {

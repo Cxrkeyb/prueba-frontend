@@ -38,7 +38,7 @@ const ProductsView = () => {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
-      .post("https://3c4f-181-78-80-164.ngrok-free.app/products/v1", {
+      .post("https://immortal-longhorn-trusty.ngrok-free.approducts/v1", {
         code: data.code,
         name: data.productName,
         features: data.features,
