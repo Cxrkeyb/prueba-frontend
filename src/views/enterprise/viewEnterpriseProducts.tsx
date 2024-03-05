@@ -58,7 +58,11 @@ const ViewEnterpriseProducts = () => {
 
   useEffect(() => {
     axios
-      .get(`https://ray-stirring-probably.ngrok-free.app/products/v1/enterprise/${id}`)
+      .get(`https://3c4f-181-78-80-164.ngrok-free.app/products/v1/enterprise/${id}`, {
+        headers: { 
+          "ngrok-skip-browser-warning": "69420",
+        }
+      })
       .then((response) => {
         console.log(response);
         if (response.data) setProducts(response.data);

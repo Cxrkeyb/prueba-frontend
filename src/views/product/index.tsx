@@ -15,21 +15,27 @@ import { useTranslation } from "next-i18next";
 import { FormLabel } from "@mui/material";
 import axios from "axios";
 
+class Currency {
+  code: string;
+  price: number;
+}
+
 const ProductsView = () => {
   const { t } = useTranslation(["common", "form"]);
 
   const formSchema = z.object({
-    code: z.string().min(1, { message: t('form:questions.code.codeError') }),
+    code: z.string().min(1, { message: t("form:questions.code.codeError") }),
     productName: z
       .string()
-      .min(1, { message: t('form:questions.productName.codeError') }),
+      .min(1, { message: t("form:questions.productName.codeError") }),
     features: z.string().optional(),
-    prices: z.object({
-      USD: z.string(),
-      EUR: z.string(),
-      GBP: z.string(),
-    }),
-    nit: z.string()
+    prices: z.array(
+      z.object({
+        code: z.string(),
+        price: z.number().positive(),
+      })
+    ),
+    nit: z.string(),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -37,24 +43,20 @@ const ProductsView = () => {
   });
 
   function onSubmit(data: z.infer<typeof formSchema>) {
-    axios.post(
-      "https://ray-stirring-probably.ngrok-free.app/products/v1",
-      {
+    axios
+      .post("https://3c4f-181-78-80-164.ngrok-free.app/products/v1", {
         code: data.code,
         name: data.productName,
         features: data.features,
-        prices: {
-          USD: data.prices.USD,
-          EUR: data.prices.EUR,
-          GBP: data.prices.GBP,
-        },
-        nit: data.nit
-      }
-    ).then((response) => {
-      console.log(response)
-    }).catch((error) => {
-      console.error(error);
-    });
+        prices: data.prices,
+        nit: data.nit,
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   return (
@@ -147,9 +149,7 @@ const ProductsView = () => {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={t(
-                          "form:questions.nit.placeholder"
-                        )}
+                        placeholder={t("form:questions.nit.placeholder")}
                         {...field}
                       />
                     </FormControl>

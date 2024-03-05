@@ -46,7 +46,7 @@ const EnterpriseIdView = () => {
 
   function onSubmit(data: z.infer<typeof formSchema>) {
     axios
-      .put(`https://ray-stirring-probably.ngrok-free.app/enterprises/v1/${id}`, data)
+      .put(`https://3c4f-181-78-80-164.ngrok-free.app/enterprises/v1/${id}`, data)
       .then((response) => {
         router.push(`/enterprise/${data.nit}`);
       })
@@ -66,7 +66,12 @@ const EnterpriseIdView = () => {
 
   const deleteEnterprise = () => {
     axios
-      .delete(`https://ray-stirring-probably.ngrok-free.app/enterprises/v1/${id}`)
+      .delete(`https://3c4f-181-78-80-164.ngrok-free.app/enterprises/v1/${id}`, {
+        headers: { 
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        }
+      })
       .then((response) => {
         router.push("/");
       })
@@ -77,7 +82,11 @@ const EnterpriseIdView = () => {
 
   useEffect(() => {
     axios
-      .get(`https://ray-stirring-probably.ngrok-free.app/enterprises/v1/${id}`)
+      .get(`https://3c4f-181-78-80-164.ngrok-free.app/enterprises/v1/${id}`, {
+        headers: { 
+          "ngrok-skip-browser-warning": "69420",
+        }
+      })
       .then((response) => {
         console.log(response);
         if (response.data) setEnterprise(response.data);

@@ -7,9 +7,13 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get("https://ray-stirring-probably.ngrok-free.app/products/v1/products")
+      .get("https://3c4f-181-78-80-164.ngrok-free.app/products/v1/products", {
+        headers: { 
+          "ngrok-skip-browser-warning": "69420",
+        }
+      })
       .then((response) => {
-        setProducts(response.data);
+        console.log(response);
       })
       .catch((error) => {
         console.error(error);

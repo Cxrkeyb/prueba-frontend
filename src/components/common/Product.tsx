@@ -3,15 +3,16 @@ import React from "react";
 import { Button } from "../ui/button";
 import { useRouter } from "next/router";
 
+class Currency {
+  code: string;
+  price: number;
+}
+
 interface Product {
   name: string;
   nit: string;
   productCode: string;
-  currencies: {
-    USD: number;
-    EUR: number;
-    GBP: number;
-  };
+  currencies: Currency[];
   productProperties: string;
   id: string;
 }
@@ -36,15 +37,13 @@ const ProductComponent: React.FC<ProductProps> = ({ product, index }) => {
       <p className="text-gray-600 mb-2">
         {t("form:questions.code.title")}: {product.productCode}
       </p>
-      <p className="text-gray-600 mb-2">
-        {t("form:questions.prices.titleGBP")}: {product.currencies.GBP}
-      </p>
-      <p className="text-gray-600 mb-2">
-        {t("form:questions.prices.titleUSD")}: {product.currencies.USD}
-      </p>
-      <p className="text-gray-600 mb-2">
-        {t("form:questions.prices.titleEUR")}: {product.currencies.EUR}
-      </p>
+      {
+        product.currencies.map((currency, index) => (
+          <p key={index} className="text-gray-600 mb-2">
+            {currency.code} {currency.price}
+          </p>
+        ))
+      }
       <p className="text-gray-600 mb-2">
         {t("form:questions.characteristics.title")}: {product.productProperties}
       </p>

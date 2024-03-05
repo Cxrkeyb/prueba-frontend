@@ -17,6 +17,11 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import userStore from "@/store/userStore";
 
+class Currency {
+  code: string;
+  price: number;
+}
+
 const ProductsView = () => {
   const { t } = useTranslation(["common", "form"]);
   const [isEditing, setIsEditing] = React.useState(false);
@@ -24,11 +29,7 @@ const ProductsView = () => {
     productCode: "123456789",
     name: "Producto 1",
     company: "Empresa 1",
-    currencies: {
-      USD: 50,
-      EUR: 100,
-      GBP: 200,
-    },
+    currencies: [],
     productProperties: "Caracteristica",
   });
 
@@ -53,7 +54,7 @@ const ProductsView = () => {
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     console.log("onSubmit", data);
     // axios
-    //   .put(`https://ray-stirring-probably.ngrok-free.app/products/v1/products/${product.id}`, data)
+    //   .put(`https://3c4f-181-78-80-164.ngrok-free.app/products/v1/products/${product.id}`, data)
     //   .then((response) => {
     //     console.log(response);
     //   })
@@ -80,7 +81,14 @@ const ProductsView = () => {
 
   useEffect(() => {
     axios
-      .get(`https://ray-stirring-probably.ngrok-free.app/products/v1/products/${id}`)
+      .get(
+        `https://3c4f-181-78-80-164.ngrok-free.app/products/v1/products/${id}`,
+        {
+          headers: {
+            "ngrok-skip-browser-warning": "69420",
+          },
+        }
+      )
       .then((response) => {
         console.log(response.data);
         setProduct(response.data);
@@ -244,15 +252,11 @@ const ProductsView = () => {
             {t("form:questions.characteristics.placeholder")}:{" "}
             {product?.productProperties}
           </p>
-          <p className="text-gray-600 mb-2">
-            {t("form:questions.prices.titleUSD")}: {product?.currencies.USD}
-          </p>
-          <p className="text-gray-600 mb-2">
-            {t("form:questions.prices.titleEUR")}: {product?.currencies.EUR}
-          </p>
-          <p className="text-gray-600 mb-2">
-            {t("form:questions.prices.titleGBP")}: {product?.currencies.GBP}
-          </p>
+          {product.currencies.map((currency: Currency, index) => (
+            <p className="text-gray-600 mb-2" key={index}>
+              {currency.code}:{currency.price}
+            </p>
+          ))}
           <div className="flex gap-8">
             {user?.role === "admin" && (
               <>

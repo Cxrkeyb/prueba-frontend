@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/navigation";
@@ -14,14 +14,18 @@ interface Empresa {
 const EnterprisesView = () => {
   const { t } = useTranslation(["common", "form", "constants"]);
 
-  const [enterprises, setEnterprises] = React.useState<Empresa[]>([]);
+  const [enterprises, setEnterprises] = useState<Empresa[]>([]);
 
   useEffect(() => {
     axios
-      .get("https://ray-stirring-probably.ngrok-free.app/enterprises/v1/")
+      .get("https://3c4f-181-78-80-164.ngrok-free.app/enterprises/v1/", {
+        headers: { 
+          "ngrok-skip-browser-warning": "69420",
+        }
+      })
       .then((response) => {
         console.log(response);
-        if (response.data) setEnterprises(response.data);
+        setEnterprises(response.data);
       })
       .catch((error) => {
         console.error(error);
@@ -29,6 +33,8 @@ const EnterprisesView = () => {
   }, []);
 
   const router = useRouter();
+
+  console.log(enterprises);
 
   return (
     <div className="flex flex-wrap justify-center">
